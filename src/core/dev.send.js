@@ -106,7 +106,7 @@ module.exports = function run (data)
       }
       embed.
          setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed:\n\n${data.text}`).
+         setDescription(`Developer Identity confirmed <@${data.message.author.id}>:\n\n${data.text}`).
          setTimestamp();
       // -------------
       // Send message
