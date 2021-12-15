@@ -721,21 +721,33 @@ function embedOff (data)
    function sendWebhookMessage (webhook, data)
    {
 
-      if (data.message.server[0].servertags === "none")
+      if (data.origin.id === data.forward && data.message.server[0].servertags === "none")
+      {
+
+         serverPings = [];
+
+      }
+      else if (data.message.server[0].servertags === "none")
       {
 
          serverPings = ["everyone", "users"];
 
       }
 
-      if (data.message.server[0].servertags === "everyone")
+      if (data.origin.id === data.forward && data.message.server[0].servertags === "everyone")
+      {
+
+         serverPings = [];
+
+      }
+      else if (data.message.server[0].servertags === "everyone")
       {
 
          serverPings = ["users"];
 
       }
 
-      if (data.message.server[0].servertags === "all")
+      if (data.origin.id === data.forward || data.message.server[0].servertags === "all")
       {
 
          serverPings = [];
@@ -866,6 +878,7 @@ function embedOff (data)
    // Resend attachments
    // -------------------
 
+   // connected to DM tasks
    function sendAttachments (data)
    {
 
