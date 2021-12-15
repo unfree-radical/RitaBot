@@ -869,13 +869,13 @@ function embedOff (data)
    function sendAttachments (data)
    {
 
-      if (!data.attachments && !data.attachments.array().length > 0)
+      if (!data.attachments && !data.attachments.value().array().length > 0)
       {
 
          return;
 
       }
-      let attachments = data.attachments.array();
+      let attachments = Array.from(data.attachments.values());
 
       if (data.forward && attachments && attachments.length > 0)
       {
