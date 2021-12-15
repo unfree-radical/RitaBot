@@ -152,7 +152,7 @@ module.exports = function run (data)
       }
       embed.
          setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed (<@${devTag}>):\n\n${data.text}`).
+         setDescription(`Developer Identity confirmed (@${devTag}):\n\n${data.text}`).
          setTimestamp().
          setFooter("This message may self-destruct in one minute");
       // -------------
