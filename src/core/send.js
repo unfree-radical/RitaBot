@@ -57,7 +57,7 @@ function e50013 (data, eh, forwardChannel, sendData)
          if (err)
          {
 
-            return dbError(
+            return error(
                err,
                data
             );
@@ -721,26 +721,24 @@ function embedOff (data)
    function sendWebhookMessage (webhook, data)
    {
 
-      var serverTags = null;
-
       if (data.message.server[0].servertags === "none")
       {
 
-         serverTags = "none";
+         serverPings = ["everyone", "users"];
 
       }
 
       if (data.message.server[0].servertags === "everyone")
       {
 
-         serverTags = "everyone";
+         serverPings = ["users"];
 
       }
 
       if (data.message.server[0].servertags === "all")
       {
 
-         serverTags = "all";
+         serverPings = [];
 
       }
 
@@ -782,8 +780,10 @@ function embedOff (data)
       {
 
          return webhook.send({
+            "allowedMentions": {
+               "parse": serverPings
+            },
             "avatarURL": `https://cdn.discordapp.com/avatars/${data.message.author.id}/${data.message.author.avatar}`,
-            "disableMentions": serverTags,
             files,
             "username": data.message.author.username
          }).catch((err) => console.log("error", err, "send", data.message.guild.name));
@@ -819,9 +819,11 @@ function embedOff (data)
             webhook.send({
                // If you get a error at the below line then the bot does not have write permissions.
 
+               "allowedMentions": {
+                  "parse": serverPings
+               },
                "avatarURL": `https://cdn.discordapp.com/avatars/${data.message.client.user.id}/${data.message.client.user.avatar}`,
                "content": data.text,
-               "disableMentions": serverTags,
                files,
                "username": data.message.client.user.username || data.message
             }).then((msg) =>
@@ -839,9 +841,11 @@ function embedOff (data)
             webhook.send({
                // If you get a error at the below line then the bot does not have write permissions.
 
+               "allowedMentions": {
+                  "parse": serverPings
+               },
                "avatarURL": `https://cdn.discordapp.com/avatars/${data.message.author.id}/${data.message.author.avatar}`,
                "content": data.text,
-               "disableMentions": serverTags,
                files,
                "username": data.message.author.username || data.message
             }).then((msg) =>
