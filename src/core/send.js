@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 // -----------------
 // Global variables
 // Err TAG: RS013??
@@ -21,6 +22,7 @@ const webHookName = "RITA";
 const error = require("./error");
 const auth = require("../core/auth");
 const {oneLine} = require("common-tags");
+const emojimap = require("emoji.json/emoji-compact.json");
 
 // -----------------
 // Permission Check
@@ -468,23 +470,34 @@ function embedOn (data)
          };
       }*/
 
-
       if (data.origin)
-
       {
 
-         if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
+         if (data.origin.id === data.forward)
          {
 
-            // console.log("DEBUG: Embed ON: Same channel GIF translation, GIF ignored");
-            return;
+            if (data.message.content.startsWith("https://tenor.com/"))
+            {
 
-         }
-         if (data.origin.id === data.forward && data.message.content.startsWith("<:") && data.message.content.endsWith(">"))
-         {
+               // console.log("DEBUG: Embed ON: Same channel GIF translation, GIF ignored");
+               return;
 
-            // console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
-            return;
+            }
+            if (data.message.content.startsWith("<a:") || data.message.content.startsWith("<:") && data.message.content.endsWith(">"))
+            {
+
+               // console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
+               return;
+
+            }
+            // var newdata = data.message.content.replace("'", " ");
+
+            if (emojimap.indexOf(data.message.content) !== -1)
+            {
+
+               return;
+
+            }
 
          }
 
@@ -759,13 +772,34 @@ function embedOff (data)
       if (data.attachments)
       {
 
-         if (data.origin.id === data.forward && data.message.content.startsWith("https://tenor.com/"))
+         if (data.origin.id === data.forward)
          {
 
-            // console.log("DEBUG: Embed Off: Same channel GIF translation, GIF ignored");
-            return;
+            if (data.message.content.startsWith("https://tenor.com/"))
+            {
+
+               // console.log("DEBUG: Embed ON: Same channel GIF translation, GIF ignored");
+               return;
+
+            }
+            if (data.message.content.startsWith("<a:") || data.message.content.startsWith("<:") && data.message.content.endsWith(">"))
+            {
+
+               // console.log("DEBUG: Embed ON: Same channel Single Emoji translation, Emoji ignored");
+               return;
+
+            }
+            // var newdata = data.message.content.replace("'", " ");
+
+            if (emojimap.indexOf(data.message.content) !== -1)
+            {
+
+               return;
+
+            }
 
          }
+
          if (data.attachments.size !== 0)
          {
 
