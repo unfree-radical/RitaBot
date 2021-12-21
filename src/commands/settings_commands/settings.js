@@ -487,13 +487,20 @@ function getSettings (data)
 
       const badWordsVariable = data.cmd.params.split(" ")[1].toLowerCase();
       let value = false;
-      if (badWordsVariable === "on" || badWordsVariable === "off")
+      if (badWordsVariable === "off" || badWordsVariable === "replace" || badWordsVariable === "delete")
       {
 
-         if (badWordsVariable === "on")
+         if (badWordsVariable === "replace")
          {
 
-            value = true;
+            value = "replace";
+
+         }
+
+         if (badWordsVariable === "delete")
+         {
+
+            value = "delete";
 
          }
 
