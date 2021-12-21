@@ -482,6 +482,78 @@ function getSettings (data)
    // Lang Detect
    // -----------------
 
+   async function badWords (data)
+   {
+
+      const badWordsVariable = data.cmd.params.split(" ")[1].toLowerCase();
+      let value = false;
+      if (badWordsVariable === "on" || badWordsVariable === "off")
+      {
+
+         if (badWordsVariable === "on")
+         {
+
+            value = true;
+
+         }
+
+         // console.log(`DEBUG: embed variable ${flagPersistVariable}`);
+         await db.updateServerTable(
+            data.message.channel.guild.id,
+            "badwords",
+            value,
+            function error (err)
+            {
+
+               if (err)
+               {
+
+                  return logger(
+                     "error",
+                     err,
+                     "command",
+                     data.message.channel.guild.name
+                  );
+
+               }
+               const output =
+            "**```Updated Language Detection Settings```**\n" +
+            `Bad Words filter = ${badWordsVariable}\n\n`;
+               data.color = "info";
+               data.text = output;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         );
+
+      }
+      else
+      {
+
+         data.color = "error";
+         data.text =
+      `:warning:  **\`${badWordsVariable
+      }\`** is not a valid Bad Words filter option.\n`;
+
+         // -------------
+         // Send message
+         // -------------
+
+         return sendMessage(data);
+
+      }
+
+   }
+
+   // -----------------
+   // Lang Detect
+   // -----------------
+
    async function langDetect (data)
    {
 
@@ -727,6 +799,7 @@ function getSettings (data)
    const validSettings = {
       // "announce": announcement,
       // add,
+      "badwords": badWords,
       "flagpersist": setFlagPersistence,
       "langdetect": langDetect,
       "listservers": listServers,
