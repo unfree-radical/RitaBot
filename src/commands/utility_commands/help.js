@@ -367,19 +367,16 @@ function helpMessage (config, param)
    `__**Displays Translation Tasks**__\n\n` +
 
    "```md\n" +
-   `# Displays translation tasks of the current channel\n` +
-   `* ${cmd} tasks\n\n` +
+      `* ${cmd} tasks = Displays current channel tasks.\n` +
+      `* ${cmd} tasks me = Displays your tasks.\n` +
+      `* ${cmd} tasks @userID = Displays tasks of targeted user.\n` +
+      `* ${cmd} tasks #channel = Displays channel tasks.\n` +
    "```" +
 
    "```md\n" +
-   `# Displays translation tasks of target channel\n` +
-   `* ${cmd} tasks #TargetChannel\n\n` +
-   "```" +
-
-   "```md\n" +
-   `# Displays translation tasks of me (User calling command)\n` +
-   `* ${cmd} tasks me\n\n` +
-   "```\n";
+   `# COMING SOON\n` +
+   `* ${cmd} tasks server [serverID] - Displays tasks of entire server.\n\n` +
+   "```";
 
    // ----------------------
    // Auto translate (stop)
@@ -690,24 +687,24 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Command\n` +
-   `* ${cmd} create [channelName]\n` +
-   `* ${long} create [channelName]\n` +
-   `* ${cmd} create [channelName] [categoryID]\n` +
-   `* ${long} create [channelName] [categoryID]\n\n` +
+   `* ${cmd} create [channelName].\n` +
+   `* ${long} create [channelName].\n` +
+   `* ${cmd} create [channelName] [categoryID].\n` +
+   `* ${long} create [channelName] [categoryID].\n\n` +
    "```" +
 
    "```md\n" +
    `# Parameters\n` +
-   `* [channelName] - sets name of new channel\n` +
-   `* [categoryID] - sets category for the new channel\n\n` +
+   `* [channelName] - sets name of new channel.\n` +
+   `* [categoryID] - sets category for the new channel.\n\n` +
    "```" +
 
    "```md\n" +
    `# Examples\n` +
-   `* ${cmd} create bob - your new channel would now be bob \n` +
-   `* ${long} create bob - your new channel would now be bob \n` +
-   `* ${cmd} create bob 914747144461843234 - your new channel would now be bob in the designated category \n` +
-   `* ${long} create bob 914747144461843234 - your new channel would now be bob in the designated category\n\n` +
+   `* ${cmd} create bob - your new channel would now be bob. \n` +
+   `* ${long} create bob - your new channel would now be bob. \n` +
+   `* ${cmd} create bob 914747144461843234 - your new channel would now be bob in the designated category. \n` +
+   `* ${long} create bob 914747144461843234 - your new channel would now be bob in the designated category.\n\n` +
    "```\n";
 
    // ---------------
@@ -718,27 +715,27 @@ function helpMessage (config, param)
    `__**Developers Only**__\n\n` +
    "```md\n" +
    `# Commands\n` +
-   `* ${cmd} announce\n` +
-   `* ${cmd} eject [ServerID]\n` +
-   `* ${cmd} blacklist [ServerID]\n` +
-   `* ${cmd} unblacklist [ServerID]\n` +
-   `* ${cmd} warn [ServerID]\n` +
-   `* ${cmd} unwarn [ServerID]\n` +
+   `* ${cmd} announce.\n` +
+   `* ${cmd} eject [ServerID].\n` +
+   `* ${cmd} blacklist [ServerID].\n` +
+   `* ${cmd} unblacklist [ServerID].\n` +
+   `* ${cmd} warn [ServerID].\n` +
+   `* ${cmd} unwarn [ServerID].\n` +
    `* ${cmd} check server [ServerID]\n` +
-   `* ${cmd} settings updatedb\n` +
-   `* ${cmd} settings listservers\n` +
-   `* ${cmd} invite server [ServerID]\n\n` +
+   `* ${cmd} settings updatedb.\n` +
+   `* ${cmd} settings listservers.\n` +
+   `* ${cmd} invite server [ServerID].\n\n` +
    "```" +
 
    "```md\n" +
    `# Parameters\n` +
-   `* [ServerID] - Raw Server ID\n\n` +
+   `* [ServerID] - Raw Server ID.\n\n` +
    "```" +
 
    "```md\n" +
    `# Examples\n` +
-   `* ${cmd} eject [ServerID] - Eject Rita from [ServerID]\n` +
-   `* ${cmd} blacklist [ServerID] - [ServerID] Will be blacklisted\n\n` +
+   `* ${cmd} eject [ServerID] - Eject Rita from [ServerID].\n` +
+   `* ${cmd} blacklist [ServerID] - [ServerID] Will be blacklisted.\n\n` +
    "```\n";
 
    // ---------------
@@ -750,13 +747,18 @@ function helpMessage (config, param)
 
    "```md\n" +
       `* ${cmd} check = Check current server.\n` +
-      `* ${cmd} check me = Check user permissions.\n` +
-      `* ${cmd} check channel = Check channel permissions.\n` +
+      `* ${cmd} check me = Check your permissions.\n` +
+      `* ${cmd} check #channel = Check channel permissions.\n` +
       "```" +
 
       "```md\n" +
       `# Dev Only\n` +
-      `* ${cmd} check server [serverId] = Check Target Server\n\n` +
+      `* ${cmd} check server [serverId] = Check Target Server.\n\n` +
+      "```" +
+
+      "```md\n" +
+      `# COMING SOON!!\n` +
+      `* ${cmd} check @user = Check user permissions.\n` +
       "```\n";
    // ----------------
    // Proccess result
