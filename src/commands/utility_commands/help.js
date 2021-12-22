@@ -367,19 +367,16 @@ function helpMessage (config, param)
    `__**Displays Translation Tasks**__\n\n` +
 
    "```md\n" +
-   `# Displays translation tasks of the current channel\n` +
-   `* ${cmd} tasks\n\n` +
+      `* ${cmd} tasks = Displays current channel tasks.\n` +
+      `* ${cmd} tasks me = Displays your tasks.\n` +
+      `* ${cmd} tasks @userID = Displays tasks of targeted user.\n` +
+      `* ${cmd} tasks #channel = Displays channel tasks.\n` +
    "```" +
 
    "```md\n" +
-   `# Displays translation tasks of target channel\n` +
-   `* ${cmd} tasks #TargetChannel\n\n` +
-   "```" +
-
-   "```md\n" +
-   `# Displays translation tasks of me (User calling command)\n` +
-   `* ${cmd} tasks me\n\n` +
-   "```\n";
+   `# COMING SOON\n` +
+   `* ${cmd} tasks server [serverID] - Displays tasks of entire server.\n\n` +
+   "```";
 
    // ----------------------
    // Auto translate (stop)
