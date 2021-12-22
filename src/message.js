@@ -157,6 +157,7 @@ module.exports = async function run (config, message)
       message.sourceID = message.guild.id;
       // eslint-disable-next-line no-self-assign
       message.guild.owner = await message.guild.fetchOwner();
+      message.isOwner = message.member.id.includes(message.guild.owner.id);
 
       // Add role color
       message.roleColor = fn.getRoleColor(message.member);

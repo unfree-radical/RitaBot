@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // -----------------
 // Global variables
 // Err TAG: RC404??
@@ -39,11 +40,10 @@ function dbError (err, data)
 // Remove task from database
 // --------------------------
 
-
 function deleteTask (data)
 {
 
-   console.log(`DEBUG: [5] deleteTask Called`);
+   // console.log(`DEBUG: [5] deleteTask Called`);
    db.removeTaskID(
       data.cmd.num,
       function error (err, res)
@@ -74,7 +74,7 @@ function deleteTask (data)
             // Send message
             // -------------
 
-            console.log(`DEBUG: [6] Unable to delete task from DB`);
+            // console.log(`DEBUG: [6] Unable to delete task from DB`);
             return sendMessage(data);
 
          }
@@ -86,119 +86,12 @@ function deleteTask (data)
          // Send message
          // -------------
 
-         console.log(`DEBUG: [6] Task ${data.cmd.num} Deleted`);
+         // console.log(`DEBUG: [6] Task ${data.cmd.num} Deleted`);
          return sendMessage(data);
 
       }
 
    );
-
-}
-
-// --------------------------
-// Remove task from database
-// --------------------------
-
-
-function checkDeleteTask (data)
-{
-
-   if (!data.cmd.num)
-   {
-
-      data.color = "error";
-      data.text = `:warning:  Please specify a task ID`;
-
-      // -------------
-      // Send message
-      // -------------
-      console.log(`DEBUG: [2] No task ID in command`);
-      return sendMessage(data);
-
-   }
-
-   console.log(`DEBUG: [2] Has task ID in command`);
-
-   {
-
-      db.checkTask(
-         data.cmd.num,
-         "id",
-         null,
-         function error (err, res)
-         {
-
-            if (err)
-            {
-
-               return dbError(
-                  err,
-                  data
-               );
-
-            }
-
-            // -----------------------------
-            // Error if task does not exist
-            // -----------------------------
-
-            if (res.length < 1 || !res)
-            {
-
-               data.color = "error";
-               data.text = `:warning: No such task`;
-
-               // -------------
-               // Send message
-               // -------------
-
-               console.log(`DEBUG: [3] Invalid task ID in command`);
-               return sendMessage(data);
-
-            }
-            console.log(`DEBUG: [3] Valid task ID in command`);
-
-            // -----------------------------------
-            // Check where is command called from
-            // -----------------------------------
-
-            const server = res[0].server;
-            if (data.message.guild.id === server)
-            {
-
-               console.log(`DEBUG: [4] Matching Servers - Call deleteTask`);
-               return deleteTask(data);
-
-            }
-
-
-            if (!data.message.isDev)
-            {
-
-               data.color = "error";
-               data.text =
-                     ":police_officer: Only Dev's can stop a command for another server.";
-
-               // -------------
-               // Send message
-               // -------------
-
-               console.log(`DEBUG: [4] Not Dev - Non-Matching Servers - Terminate`);
-               return sendMessage(data);
-
-            }
-
-            // --------------------------------------
-            // Otherwise, proceed to call deleteTask
-            // --------------------------------------
-
-            console.log(`DEBUG: [4] Dev Confimred - Non-Matching Servers - Call deleteTask`);
-            return deleteTask(data);
-
-         }
-      );
-
-   }
 
 }
 
@@ -234,13 +127,22 @@ function removeTask (res, data, origin, dest, destDisplay)
          }
          data.color = "ok";
          data.text =
-         `${":negative_squared_cross_mark:  Auto translation of this " +
-         "channel has been stopped for **"}${destDisplay}**`;
+         `:negative_squared_cross_mark:  Auto translation of this ` +
+         `channel has been stopped for **${destDisplay}**`;
 
          if (dest === "all")
          {
 
-            data.text += ` (${res.length})`;
+            data.text =
+            `:negative_squared_cross_mark:  Auto translation of this ` +
+            `channel has been stopped for **${destDisplay}** (${res.length})`;
+
+         }
+         else if (dest === "server")
+         {
+
+            data.text =
+            `:negative_squared_cross_mark:  All Translation tasks on **${destDisplay}** (${res.length}) have been stopped`;
 
          }
 
@@ -256,6 +158,256 @@ function removeTask (res, data, origin, dest, destDisplay)
    );
 
 }
+
+// --------------------------
+// Remove task from database
+// --------------------------
+
+function checkDeleteTask (data)
+{
+
+   if (!data.cmd.num)
+   {
+
+      data.color = "error";
+      data.text = `:warning:  Please specify a task ID`;
+
+      // -------------
+      // Send message
+      // -------------
+      // console.log(`DEBUG: [2] No task ID in command`);
+      return sendMessage(data);
+
+   }
+
+   // console.log(`DEBUG: [2] Has task ID in command`);
+
+   {
+
+      db.checkTask(
+         data.cmd.num,
+         "id",
+         null,
+         function error (err, res)
+         {
+
+            if (err)
+            {
+
+               return dbError(
+                  err,
+                  data
+               );
+
+            }
+
+            // -----------------------------
+            // Error if task does not exist
+            // -----------------------------
+
+            if (res.length < 1 || !res)
+            {
+
+               data.color = "error";
+               data.text = `:warning: No such task`;
+
+               // -------------
+               // Send message
+               // -------------
+
+               // console.log(`DEBUG: [3] Invalid task ID in command`);
+               return sendMessage(data);
+
+            }
+            // console.log(`DEBUG: [3] Valid task ID in command`);
+
+            // -----------------------------------
+            // Check where is command called from
+            // -----------------------------------
+
+            const server = res[0].server;
+            if (data.message.guild.id === server)
+            {
+
+               // console.log(`DEBUG: [4] Matching Servers - Call deleteTask`);
+               return deleteTask(data);
+
+            }
+
+
+            if (!data.message.isDev)
+            {
+
+               data.color = "error";
+               data.text =
+                     ":police_officer: Only Dev's can stop a command for another server.";
+
+               // -------------
+               // Send message
+               // -------------
+
+               // console.log(`DEBUG: [4] Not Dev - Non-Matching Servers - Terminate`);
+               return sendMessage(data);
+
+            }
+
+            // --------------------------------------
+            // Otherwise, proceed to call deleteTask
+            // --------------------------------------
+
+            // console.log(`DEBUG: [4] Dev Confimred - Non-Matching Servers - Call deleteTask`);
+            return deleteTask(data);
+
+         }
+      );
+
+   }
+
+}
+
+// --------------------------------------
+// Remove all server tasks from database
+// --------------------------------------
+
+function checkDeleteServer (data)
+{
+
+   let serverId = data.cmd.num;
+   let destDisplay = "Some Server";
+   const target = data.message.client.guilds.cache.get(serverId);
+
+   // console.log(`DEBUG: [2] Has Server ID in command`);
+
+   if (serverId)
+   {
+
+      if (!data.message.isDev)
+      {
+
+         // console.log("DEBUG: Developer ID Confirmed");
+         data.color = "warning";
+         data.text = ":cop:  This Command is for bot Developers Only.\n";
+         return sendMessage(data);
+
+      }
+      if (!target)
+      {
+
+         data.color = "error";
+         data.text = `\`\`\`${serverId} is not registered in the database.\n\n\`\`\``;
+         // console.log(`DEBUG: [3] Invalid Server ID in not in DB`);
+         return sendMessage(data);
+
+
+      }
+
+      destDisplay = target.name;
+
+   }
+
+   if (!data.cmd.num)
+   {
+
+      serverId = data.message.channel.guild.id;
+      destDisplay = data.message.guild.name;
+
+   }
+
+   {
+
+      db.checkTask(
+         serverId,
+         "server",
+         null,
+         function error (err, res)
+         {
+
+            if (err)
+            {
+
+               return dbError(
+                  err,
+                  data
+               );
+
+            }
+
+            // -------------------------------
+            // Error if server does not exist
+            // -------------------------------
+
+            if (res.length < 1 || !res)
+            {
+
+               data.color = "error";
+               data.text = `:warning: No active tasks for server **${destDisplay}**`;
+
+               // -------------
+               // Send message
+               // -------------
+
+               // console.log(`DEBUG: [3] Invalid Server ID in command`);
+               return sendMessage(data);
+
+            }
+            // console.log(`DEBUG: [3] Valid Server ID in command`);
+
+            // -----------------------------------
+            // Check where is command called from
+            // -----------------------------------
+
+            const server = res[0].server;
+            if (data.message.guild.id === server)
+            {
+
+               // console.log(`DEBUG: [4] Matching Servers - Call deleteTask`);
+               return removeTask(
+                  res,
+                  data,
+                  serverId,
+                  "server",
+                  destDisplay
+               );
+
+            }
+
+
+            if (!data.message.isDev)
+            {
+
+               data.color = "error";
+               data.text =
+                     ":police_officer: Only Dev's can stop a command for another server.";
+
+               // -------------
+               // Send message
+               // -------------
+
+               // console.log(`DEBUG: [4] Not Dev - Non-Matching Servers - Terminate`);
+               return sendMessage(data);
+
+            }
+
+            // --------------------------------------
+            // Otherwise, proceed to call deleteTask
+            // --------------------------------------
+
+            // console.log(`DEBUG: [4] Dev Confimred - Non-Matching Servers - Call deleteTask`);
+            return removeTask(
+               res,
+               data,
+               serverId,
+               "server",
+               destDisplay
+            );
+
+         }
+      );
+
+   }
+
+}
+
 
 // ------------------------
 // Destination ID handler
@@ -412,8 +564,15 @@ module.exports = function run (data)
    if (data.cmd.params && data.cmd.params.toLowerCase().includes("task"))
    {
 
-      console.log(`DEBUG: [1] Stop by Task ID called by ${data.message.author.username}`);
+      // console.log(`DEBUG: [1] Stop by Task ID called by ${data.message.author.username}`);
       return checkDeleteTask(data);
+
+   }
+   if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
+   {
+
+      // console.log(`DEBUG: [1] Stop by Task ID called by ${data.message.author.username}`);
+      return checkDeleteServer(data);
 
    }
 

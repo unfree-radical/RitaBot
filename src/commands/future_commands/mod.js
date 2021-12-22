@@ -18,7 +18,7 @@ module.exports.ban = function ban (data)
    // Command Code
    // -------------
 
-   if (data.message.isAdmin === true)
+   if (data.message.isAdmin)
    {
 
 
@@ -102,7 +102,7 @@ module.exports.unban = function unban (data)
    // Command Code
    // -------------
 
-   if (data.message.isAdmin === true)
+   if (data.message.isAdmin)
    {
 
 
@@ -250,7 +250,7 @@ module.exports.kick = function kick (data)
    // -------------
    // Command Code
    // -------------
-   if (data.message.isAdmin === true)
+   if (data.message.isAdmin)
    {
 
       const user = data.message.mentions.users.first();

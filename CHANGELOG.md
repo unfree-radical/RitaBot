@@ -16,6 +16,7 @@
 * Ignore same chan translation of GIF and images
 * `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object
 * Shard command has been updated to show each shard and its stat
+* Add top,gg stat tracker to RITA
 
 ### 1.3.0-alpha.? Bug Fixes
 * Local hosted users persist and react command fixed
@@ -23,6 +24,12 @@
 * Various Permission Errors
 * `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object
 * Fixed translate for `me` command
+* Fix the UID of the emoji reaction error
+* Fix Kick Command Response
+* Fix top.gg code in bot.js, so that if there is no token it ignores the code
+* Stop emoji's from translating for auto same channel translations
+* Strip mentions from same channel translations
+* !tr auto to lang for me causes error
 
 
 ### 1.3.0-alpha.? Command Changes
@@ -38,6 +45,9 @@
     > - `none` - No tags are disabled, meaning `@user`, `@everyone` and `@here` will work
     > - `everyone` - Attention tags are, meaning only `@user` will work
     > - `all` - All tags are disabled, meaning `@user`, `@everyone` and `@here` will NOT work
+* `!tr settings reset` Will reset all settings to the default value.
+* `!tr stop for server` Will stop all translation task serverwide
+* `!tr stop for server serverID` Will stop all translation task of target Server serverwide
 
 ### 1.3.0-alpha.? Database Changes
 * data.message.server[0] is built on every message event, Reducing the calls needed in send.js to db
@@ -46,6 +56,7 @@
     > - `flagpersist` - manages the flag persist variable
     > - `servername` - stores a local copy of the server name
     > - `servertags` - manages the server tags variable
+    > - `badwords` - profanity filter
     > - `menupersist` - manages the menu persist variable
     > - `whitelisted` - NOT IN USE, Yet!
  
@@ -55,6 +66,8 @@
 * Language marker has been added to embed off and and on messages, this is controlled with `!tr settings langdetect [on/off]`
 * Error messages show Task ID
 * servertags and langdetect status added to the settings and check commands
+* Append Dev name to "Developer identity confirmed"
+* Dev Dependencies core to this bot, `gulp-watch` have been updated
 
 ------------
 

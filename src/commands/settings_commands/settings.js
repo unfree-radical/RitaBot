@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // -----------------
 // Global variables
 // Err TAG: RC307??
@@ -185,7 +186,6 @@ function getSettings (data)
    // --------------------
    // Command Persistence
    // --------------------
-
 
    async function setMenuPersistence (data)
    {
@@ -399,9 +399,9 @@ function getSettings (data)
 
    }
 
-   // -----------------
+   // ------------
    // Server Tags
-   // -----------------
+   // ------------
 
    async function serverTags (data)
    {
@@ -478,9 +478,9 @@ function getSettings (data)
 
    }
 
-   // -----------------
+   // ------------
    // Lang Detect
-   // -----------------
+   // ------------
 
    async function badWords (data)
    {
@@ -557,9 +557,9 @@ function getSettings (data)
 
    }
 
-   // -----------------
+   // ------------
    // Lang Detect
-   // -----------------
+   // ------------
 
    async function langDetect (data)
    {
@@ -626,6 +626,234 @@ function getSettings (data)
          return sendMessage(data);
 
       }
+
+   }
+
+   // ---------------
+   // settings Reset
+   // ---------------
+
+   function reset (data)
+   {
+
+      // const target = data.message.client.guilds.cache.get(serverId);
+
+      Override: if (!data.message.isOwner)
+      {
+
+         if (data.message.isDev)
+         {
+
+            // console.log("DEBUG: Developer ID Confirmed");
+            break Override;
+
+         }
+
+         data.text = ":cop:  This Command is for bot Developers and Onwers only.\n";
+         return sendMessage(data);
+
+      }
+
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("server"))
+      {
+
+         const serverId = data.cmd.num;
+         const target = data.message.client.guilds.cache.get(serverId);
+
+         if (serverId)
+         {
+
+            if (!data.message.isDev)
+            {
+
+               // console.log("DEBUG: Developer ID Confirmed");
+               data.color = "warning";
+               data.text = ":cop:  This Command is for bot Developers Only.\n";
+               return sendMessage(data);
+
+            }
+            if (!target)
+            {
+
+               data.color = "error";
+               data.text = `\`\`\`${serverId} is not registered in the database.\n\n\`\`\``;
+               return sendMessage(data);
+
+
+            }
+            return resetTarget(serverId, data);
+
+         }
+
+         // -------------
+         // Send message
+         // -------------
+
+         data.color = "error";
+         data.text = `\`\`\`You are missing a Server ID, Please try again.\n\n\`\`\``;
+         return sendMessage(data);
+
+
+      }
+      return resetTarget(data.message.channel.guild.id, data);
+
+   }
+
+   async function resetTarget (serverId, data)
+   {
+
+      const filter = (m) => m.author.id === data.message.author.id;
+      // resetClean(data, 1);
+
+      await data.message.channel.send(`Please confirm you wish to reset all Server Settings to defaults`).then(() =>
+      {
+
+         data.message.channel.awaitMessages({
+            filter,
+            "errors": ["time"],
+            "max": 1,
+            "time": auth.time.long
+         }).
+            then((message) =>
+            {
+
+               let responce = null;
+               let responceLower = null;
+               responce = message.first();
+               responceLower = responce.content.toLowerCase();
+               if (responceLower === "yes" || responceLower === "y")
+               {
+
+                  resetConfirmed(serverId, data);
+                  resetClean(data, 2);
+
+               }
+               else if (responceLower === "no" || responceLower === "n")
+               {
+
+                  data.message.channel.send(`Command Terminated`);
+                  resetClean(data, 2);
+
+               }
+               else
+               {
+
+                  data.message.channel.send(`Command Terminated: Invalid Response`);
+                  resetClean(data, 2);
+
+               }
+
+            }).
+            catch((collected) =>
+            {
+
+               data.message.channel.send(`No Responce Provided Or Error:`);
+               try
+               {
+
+                  resetClean(data, 1);
+
+               }
+               catch (err)
+               {
+
+                  console.log(
+                     "Bot Message Deleted Error, settings.js",
+                     err
+                  );
+
+               }
+
+            });
+
+      });
+
+   }
+
+   async function resetConfirmed (value, data)
+   {
+
+      await db.updatePrefix(
+         value,
+         // This would be the new prefix
+         "!tr",
+         function error (err)
+         {
+
+            if (err)
+            {
+
+               return logger(
+                  "error",
+                  err,
+                  "command",
+                  data.message.channel.guild.name
+               );
+
+            }
+
+         }
+      );
+      await db.reset(
+         data.message.channel.guild.id,
+         function error (err)
+         {
+
+            if (err)
+            {
+
+               return logger(
+                  "error",
+                  err,
+                  "command",
+                  data.message.channel.guild.name
+               );
+
+            }
+            const output =
+         "**```All Server Settings Reset```**" +
+         "```md\n" +
+               `* Allow Annocement Messages: True\n` +
+               `* Embedded Message Style: On\n` +
+               `* Language Detection: False\n` +
+               `* Bot to Bot Translation Status: Off\n` +
+               `* Server Tags status: None\n` +
+               `* Translation by Flag Reactions: True\n` +
+               `* Help Menu Persistance: False\n` +
+               `* React Translation Persistance: Flase\n` +
+               `* React Emoji Persistance: Flase\n` +
+               `* Webhook Debug Active State: Flase\n\n` +
+               "```";
+            data.color = "info";
+            data.text = output;
+
+            // -------------
+            // Send message
+            // -------------
+
+            return sendMessage(data);
+
+         }
+      );
+
+   }
+
+   function resetClean (data, value)
+   {
+
+      const messageManager = data.channel.messages;
+      messageManager.fetch({"limit": value}).then((messages) =>
+      {
+
+         // `messages` is a Collection of Message objects
+         messages.forEach((message) =>
+         {
+
+            message.delete();
+
+         });
+
+      });
 
    }
 
@@ -813,6 +1041,7 @@ function getSettings (data)
       "menupersist": setMenuPersistence,
       "ownerdb": ownerUpdate,
       "reactpersist": setReactPersistence,
+      reset,
       "serverdb": serverUpdate,
       "setlang": setLang,
       "tags": serverTags,
@@ -859,7 +1088,7 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (data.message.guild.ownerId !== data.message.author.id)
+   Override: if (data.message.isOwner)
    {
 
       if (data.message.isDev)
@@ -899,8 +1128,8 @@ module.exports = function run (data)
       `:face_with_symbols_over_mouth: Server Tags Disabled: **\`${data.cmd.server[0].servertags}\`**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].menupersist}\`**\n\n` +
-      `:pause_button: Flag Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
-      `:pause_button: Flag Emoji Persistance: **\`${data.cmd.server[0].flagpersist}\`**\n\n` +
+      `:pause_button: React Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
+      `:pause_button: React Emoji Persistance: **\`${data.cmd.server[0].flagpersist}\`**\n\n` +
       `:wrench: Webhook Debug Active State: **\`${data.cmd.server[0].webhookactive}\`**`;
 
       // -------------

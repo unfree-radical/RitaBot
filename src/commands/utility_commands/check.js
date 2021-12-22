@@ -34,6 +34,13 @@ function getCheck (data)
          async function getServerInfo (server)
          {
 
+            if (!serverId)
+            {
+
+               data.text = `\`\`\`You are missing a Server ID, Please try again.\n\n\`\`\``;
+               return sendMessage(data);
+
+            }
             if (!target)
             {
 

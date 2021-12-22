@@ -119,6 +119,7 @@ const Stats = db.define(
 // ---------------------------------
 
 // console.log("DEBUG: Pre Stage Database server table definition");
+
 const Servers = db.define(
    "servers",
    {
@@ -205,7 +206,7 @@ const Servers = db.define(
       },
       "badwords": {
          "type": Sequelize.STRING(8),
-         "defaultValue": "OFF"
+         "defaultValue": "off"
       },
       "owner": {
          "type": Sequelize.STRING(255),
@@ -532,6 +533,35 @@ exports.updateServerTable = function updateServerTable (id, columnName, value, _
 
 };
 
+// -----------------------
+// Update Server Variable
+// -----------------------
+
+exports.reset = function reset (id, _cb)
+{
+
+   // console.log(`DEBUG: ID: ${id} - Name: ${columnName} - Value: ${value}`);
+   return Servers.update(
+      {lang: "en",
+         embedstyle: "on",
+         bot2botstyle: "off",
+         announce: true,
+         flag: true,
+         flagpersist: true,
+         reactpersist: true,
+         langdetect: false,
+         servertags: "none",
+         badwords: "off"},
+      {"where": {id}}
+   ).then(function update ()
+   {
+
+      _cb();
+
+   });
+
+};
+
 // -----------------------------
 // Add Missing Variable Columns
 // -----------------------------
@@ -758,6 +788,23 @@ exports.checkTask = function checkTask (origin, dest, eh, cb)
       });
 
    }
+   if (dest === "server")
+   {
+
+      return Tasks.findAll(
+         {"where": {"server": origin}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
    if (eh === "o")
    {
 
@@ -824,6 +871,25 @@ exports.removeTask = function removeTask (origin, dest, cb)
       // console.log("DEBUG: removeTask() - all");
       return Tasks.destroy({"where": {[Op.or]: [
          {origin},
+         // !!!DO NOT REMOVE!!! The next line is what deletes tasks for channels that get deleted! !!!DO NOT REMOVE!!!
+         {"dest": origin}
+      ]}}).then(function error (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   if (dest === "server")
+   {
+
+      // console.log("DEBUG: removeTask() - all");
+      return Tasks.destroy({"where": {[Op.or]: [
+         {"server": origin},
          // !!!DO NOT REMOVE!!! The next line is what deletes tasks for channels that get deleted! !!!DO NOT REMOVE!!!
          {"dest": origin}
       ]}}).then(function error (result, err)

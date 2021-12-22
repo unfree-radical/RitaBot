@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // -----------------
 // Global variables
 // Err TAG: RC301??
@@ -27,6 +28,7 @@ async function announcement (data)
       "title": null
    };
    // Announcment started - Collect Title.
+   const filter = (m) => m.author.id === data.message.author.id;
    try
    {
 
@@ -53,6 +55,7 @@ async function announcement (data)
    {
 
       data.message.channel.awaitMessages({
+         filter,
          "errors": ["time"],
          "max": 1,
          "time": time.long
@@ -82,6 +85,7 @@ async function announcement (data)
       {
 
          data.message.channel.awaitMessages({
+            filter,
             "errors": ["time"],
             "max": 1,
             "time": time.long
@@ -122,6 +126,7 @@ async function announcement (data)
       {
 
          data.message.channel.awaitMessages({
+            filter,
             "errors": ["time"],
             "max": 1,
             "time": time.long
@@ -277,7 +282,7 @@ module.exports = function run (data)
    // Error if settings param is missing
    // -----------------------------------
 
-   if (data.message.isAdmin === true)
+   if (data.message.isAdmin)
    {
 
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("off"))
