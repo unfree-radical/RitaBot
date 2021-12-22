@@ -747,14 +747,20 @@ function helpMessage (config, param)
 
    "```md\n" +
       `* ${cmd} check = Check current server.\n` +
-      `* ${cmd} check me = Check user permissions.\n` +
-      `* ${cmd} check channel = Check channel permissions.\n` +
+      `* ${cmd} check me = Check your permissions.\n` +
+      `* ${cmd} check #channel = Check channel permissions.\n` +
       "```" +
 
       "```md\n" +
       `# Dev Only\n` +
-      `* ${cmd} check server [serverId] = Check Target Server\n\n` +
+      `* ${cmd} check server [serverId] = Check Target Server.\n\n` +
+      "```" +
+
+      "```md\n" +
+      `# COMING SOON!!\n` +
+      `* ${cmd} check @user = Check user permissions.\n` +
       "```\n";
+
    // ----------------
    // Proccess result
    // ----------------
