@@ -367,10 +367,11 @@ function helpMessage (config, param)
    `__**Displays Translation Tasks**__\n\n` +
 
    "```md\n" +
-      `* ${cmd} tasks = Displays current channel tasks.\n` +
-      `* ${cmd} tasks me = Displays your tasks.\n` +
-      `* ${cmd} tasks @userID = Displays tasks of targeted user.\n` +
-      `* ${cmd} tasks #channel = Displays channel tasks.\n` +
+   `# Commands\n` +
+   `* ${cmd} tasks = Displays current channel tasks.\n` +
+   `* ${cmd} tasks me = Displays your tasks.\n` +
+   `* ${cmd} tasks @userID = Displays tasks of targeted user.\n` +
+   `* ${cmd} tasks #channel = Displays channel tasks.\n` +
    "```" +
 
    "```md\n" +
@@ -384,30 +385,25 @@ function helpMessage (config, param)
 
    const stop =
    `__**Stop Auto Translation**__\n\n` +
-   `Terminates auto-translation of channel for you. ` +
-   `Admins/mods can stop for other channels or users in server.` +
+   `Terminates auto-translation of channel for you.\n ` +
+   `Admins/mods can stop for other channels or users in server.\n ` +
+   `Use **${cmd} tasks** to get task id. ` +
+   `${cmd} stop for [me/@/#/all] - defaults to "me". ` +
 
    "```md\n" +
-   `# Command\n` +
-   `* ${cmd} stop \n` +
-   `* ${cmd} stop task [id]\n` +
-   `* ${cmd} stop for [me/@/#/all] \n\n` +
+   `# Commands\n` +
+   `* ${cmd} stop\n` +
+   `* ${cmd} stop task [id] = Stops specific task\n` +
+   `* ${cmd} stop for me = Stops DM task for you\n` +
+   `* ${cmd} stop for @user = Stops DM task for user\n` +
+   `* ${cmd} stop for #channel = Stops tasks for a specific channel\n` +
+   `* ${cmd} stop for all = Stops all tasks set from current channel\n` +
+   `* ${cmd} stop for server = Stops all tasks serverwide\n\n` +
    "```" +
 
    "```md\n" +
-   `# Parameters\n` +
-   `* tasks [id]\n` +
-   `* for [me/@/#/all] - defaults to "me" \n\n` +
-   "```" +
-
-   "```md\n" +
-   `# Examples\n` +
-   `* ${cmd} stop \n` +
-   `* ${cmd} stop tasks [id]\n` +
-   `* ${cmd} stop for me \n` +
-   `* ${cmd} stop for @usr1 \n` +
-   `* ${cmd} stop for #ch1 \n` +
-   `* ${cmd} stop for all \n` +
+   `# Dev Commands\n` +
+   `* ${cmd} stop for server serverID = Stops all tasks of target Server\n\n` +
    "```\n";
 
    // -------------
@@ -435,6 +431,7 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Permission Check\n` +
+   `* ${cmd} check\n` +
    `* ${cmd} check [me/channel]\n\n` +
    "```" +
 
@@ -468,65 +465,48 @@ function helpMessage (config, param)
 
    "```md\n" +
    `# Current Server Settings\n` +
-   `* ${cmd} settings\n\n` +
-   "```" +
+   `  * ${cmd} settings\n` +
 
-   "```md\n" +
    `# Set Custom Bot Prefix\n` +
-   `* ${cmd} prefix [prefix]\n` +
-   `* ${long} prefix [prefix]\n\n` +
-   "```" +
+   `  * ${cmd} prefix [prefix]\n` +
+   `  * ${long} prefix [prefix]\n` +
 
-   "```md\n" +
    `# Developer Announcment Messages\n` +
-   `* ${cmd} announce [on/off]\n` +
-   "```" +
+   `  * ${cmd} announce [on/off]\n` +
 
-   "```md\n" +
    `# Embedded Message Style\n` +
-   `* ${cmd} embed [on/off]\n` +
-   `* ${cmd} help embed\n` +
-   "```" +
+   `  * ${cmd} embed [on/off]\n` +
+   `  * ${cmd} help embed\n` +
 
-   "```md\n" +
    `# Language Detection\n` +
-   `* ${cmd} settings langdetect [on/off]\n` +
-   "```" +
+   `  * ${cmd} settings langdetect [on/off]\n` +
 
-   "```md\n" +
    `# Bot to Bot Translation Status\n` +
-   `* Usually 90% of bots ignore other bot messages but this feature attemptes to translate them.\n` +
-   `* ${cmd} bot2bot [on/off]\n` +
-   `* ${cmd} help bot2bot\n` +
-   "```" +
+   `  * ${cmd} bot2bot [on/off]\n` +
+   `  * ${cmd} help bot2bot\n` +
 
-   "```md\n" +
    `# Tags(everyone, here and user)\n` +
-   `* ${cmd} settings tags [Parameter]\n\n` +
+   `  * ${cmd} settings tags [Parameter]\n` +
 
-   `# Parameters\n` +
-   `* none - RITA won't ignore any mentions\n` +
-   `* everyone - RITA will ignore everyone and here tags\n` +
-   `* all - RITA will ignore all mentions\n` +
-   "```" +
+   `## Parameters\n` +
+   `     * none - RITA won't ignore any mentions\n` +
+   `     * everyone - RITA will ignore everyone and here tags\n` +
+   `     * all - RITA will ignore all mentions\n` +
 
-   "```md\n" +
    `# Reaction Translations\n` +
-   `* ${cmd} react [on/off]\n` +
-   "```" +
+   `  * ${cmd} react [on/off]\n` +
 
-   "```md\n" +
-   `# Help Menu auto delete\n` +
-   `* ${cmd} settings menupersist [on/off]\n\n` +
-   `# Reaction Translation auto delete\n` +
-   `* ${cmd} settings reactpersist [on/off]\n\n` +
-   `# Reaction Emoji auto delete\n` +
-   `* ${cmd} settings flagpersist [on/off]\n\n` +
-   "```" +
+   `# Auto Deletion Commands\n` +
+   `  * ${cmd} settings menupersist [on/off]\n` +
+   `  * ${cmd} settings reactpersist [on/off]\n` +
+   `  * ${cmd} settings flagpersist [on/off]\n` +
 
-   "```md\n" +
    `# Webhook Debug Active State\n` +
-   `* ${cmd} debug [on/off]\n\n` +
+   `  * ${cmd} debug [on/off]\n` +
+   `  * ${cmd} help debug\n` +
+
+   `# Reset all settings\n` +
+   `  * ${cmd} settings reset = reset all settings to the default.\n` +
    "```";
 
    // -------------------
@@ -713,6 +693,7 @@ function helpMessage (config, param)
 
    const dev =
    `__**Developers Only**__\n\n` +
+
    "```md\n" +
    `# Commands\n` +
    `* ${cmd} announce\n` +
@@ -746,20 +727,21 @@ function helpMessage (config, param)
    `__**Check**__\n\n` +
 
    "```md\n" +
-      `* ${cmd} check = Check current server.\n` +
-      `* ${cmd} check me = Check your permissions.\n` +
-      `* ${cmd} check #channel = Check channel permissions.\n` +
-      "```" +
+   `# Commands\n` +
+   `* ${cmd} check = Check current server.\n` +
+   `* ${cmd} check me = Check your permissions.\n` +
+   `* ${cmd} check #channel = Check channel permissions.\n` +
+   "```" +
 
-      "```md\n" +
-      `# Dev Only\n` +
-      `* ${cmd} check server [serverId] = Check Target Server.\n\n` +
-      "```" +
+   "```md\n" +
+   `# Dev Command\n` +
+   `* ${cmd} check server [serverId] = Check Target Server.\n\n` +
+   "```" +
 
-      "```md\n" +
-      `# COMING SOON!!\n` +
-      `* ${cmd} check @user = Check user permissions.\n` +
-      "```\n";
+   "```md\n" +
+   `# COMING SOON!!\n` +
+   `* ${cmd} check @user = Check user permissions.\n` +
+   "```\n";
 
    // ----------------
    // Proccess result
