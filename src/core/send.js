@@ -1062,6 +1062,20 @@ function embedOff (data)
 
 }
 
+// -----------------
+// Primary Fucntion
+// -----------------
+
+// eslint-disable-next-line complexity
+module.exports = function run (data)
+{
+
+   // Const before = Date.now();
+
+
+   // Const guildValue = data.message.guild.id;
+   data.channel = data.message.channel;
+
    // --------------------
    // Primary If Statment
    // --------------------
