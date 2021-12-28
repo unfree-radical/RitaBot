@@ -478,9 +478,9 @@ function getSettings (data)
 
    }
 
-   // ------------
-   // Lang Detect
-   // ------------
+   // ----------------
+   // Profanity Fliter
+   // ----------------
 
    async function badWords (data)
    {
@@ -524,7 +524,7 @@ function getSettings (data)
 
                }
                const output =
-            "**```Updated Language Detection Settings```**\n" +
+            "**```Updated Bad word Detection Settings```**\n" +
             `Bad Words filter = ${badWordsVariable}\n\n`;
                data.color = "info";
                data.text = output;
