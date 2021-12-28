@@ -10,7 +10,7 @@ const db = require("./db");
 const botSend = require("./send");
 const fn = require("./helpers");
 const auth = require("../core/auth");
-const profanityFilter = require("../core/profanity");
+const filter = require("../core/profanity");
 
 // ------------------------------------------
 // Fix broken Discord tags after translation
@@ -640,8 +640,7 @@ module.exports = function run (data) // eslint-disable-line complexity
                //   `Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`,
                //   err
                // );
-
-               console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`);
+               console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}, DEST CHAN: ${fw}`);
 
 
             }
@@ -665,6 +664,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          data.text = res.text;
          data.showAuthor = true;
          data.detectedLang = detectedLang;
+         data.langTo = langTo;
          if (auth.messagedebug === "4")
          {
 
@@ -693,7 +693,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          if (profanity === "replace" || profanity === "delete")
          {
 
-            await profanityFilter(data);
+            await filter(data);
 
          }
          return getUserColor(

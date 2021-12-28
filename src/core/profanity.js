@@ -4,6 +4,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 const censorjs = require("censorjs");
 const wash = require("washyourmouthoutwithsoap");
 
@@ -30,36 +31,49 @@ function detect (data)
 function profanityFilter (data)
 {
 
+
+   // ----------------
+   // Replace Badwords
+   // ----------------
+
+   const wordList = wash.words(data.langTo);
+
+   if (wordList === undefined)
+   {
+
+      return;
+
+   }
+
+   censorjs.setWordList(wordList);
+   censorjs.clean(data.text);
+   data.censored = true;
+
+
+}
+
+module.exports = function run (data)
+{
+
+   const profanity = data.message.server[0].badwords;
+   console.log(`${[profanity]}`);
    try
    {
 
-      if (data.message.server[0].badwords === "replace")
+      if (profanity === "replace")
       {
 
-         // ----------------
-         // Replace Badwords
-         // ----------------
-
-         const langTo = data.translate.to.unique[0];
-         const wordList = wash.words(langTo);
-
-         if (wordList === undefined)
-         {
-
-            return;
-
-         }
-
-         censorjs.setWordList(wordList);
-         censorjs.clean(data.text);
+         console.log(`DEBUG: Replace variable detected`);
+         return profanityFilter(data);
 
       }
-      // else if (data.message.server[0].badwords === "delete")
-      // {
+      else if (profanity === "delete")
+      {
 
-      // deletion code here
+         console.log(`DEBUG: Delete variable detected`);
+         return profanityFilter(data);
 
-      // }
+      }
       console.log("DEBUG: This line should not trigger");
 
    }
@@ -70,9 +84,4 @@ function profanityFilter (data)
 
    }
 
-}
-
-
-module.exports =
-{detect,
-   profanityFilter};
+};
