@@ -10,6 +10,7 @@ const db = require("./db");
 const botSend = require("./send");
 const fn = require("./helpers");
 const auth = require("../core/auth");
+const profanityFilter = require("../core/profanity");
 
 // ------------------------------------------
 // Fix broken Discord tags after translation
@@ -686,6 +687,13 @@ module.exports = function run (data) // eslint-disable-line complexity
                data.footer.text += `\nSource Language: ${detectedLang}`;
 
             }
+
+         }
+         const profanity = data.message.server[0].badwords;
+         if (profanity === "replace" || profanity === "delete")
+         {
+
+            await profanityFilter(data);
 
          }
          return getUserColor(
