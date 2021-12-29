@@ -7,19 +7,43 @@
 /* eslint-disable no-inline-comments */
 /* eslint-disable line-comment-position */
 /* eslint-disable sort-keys */
+const fs = require("fs");
 const time = {
    "long": 60000,
    "mid": 30000,
    "short": 5000
 };
 
-const env = `${__dirname.slice(
-   0,
-   -3
-)}.env`;
-require("dotenv").config({
-   "path": env
-});
+const path = `${__dirname.slice(0, -3)}`;
+
+
+if (fs.existsSync(`${path}.env`))
+{
+
+   // console.log("main env exists");
+   const env = `${__dirname.slice(
+      0,
+      -3
+   )}.env`;
+   module.require("dotenv").config({
+      "path": env
+   });
+
+}
+else if (fs.existsSync(`${path}.env.json`))
+{
+
+   // console.log("json env exists");
+   const env = `${__dirname.slice(
+      0,
+      -3
+   )}.env.json`;
+   module.require("dotenv-json")({
+      "path": env
+   });
+
+}
+
 
 // const dotenvJSON = require("dotenv-json");
 // const envJson = `${__dirname.slice(
