@@ -17,6 +17,7 @@
 * `Admin`, `Owner`, `Dev` and `Channel Manager` variables are now stored in message object
 * Shard command has been updated to show each shard and its stat
 * Add top,gg stat tracker to RITA
+* Profanity filter has been added
 
 ### 1.3.0-alpha.? Bug Fixes
 * Local hosted users persist and react command fixed
@@ -30,7 +31,6 @@
 * Stop emoji's from translating for auto same channel translations
 * Strip mentions from same channel translations
 * !tr auto to lang for me causes error
-
 
 ### 1.3.0-alpha.? Command Changes
 * `!tr updatelink` has been added
@@ -48,7 +48,11 @@
 * `!tr settings reset` Will reset all settings to the default value.
 * `!tr stop for server` Will stop all translation task serverwide
 * `!tr stop for server serverID` Will stop all translation task of target Server serverwide
-
+* `!tr settings profanity [off/replace/delete] has been added
+    > - `off` - profanity words are allowed. No actions taken
+    > - `replace` - Profanity words are replaced with random special characters
+    > - `delete` - message is deleted and not translated
+ 
 ### 1.3.0-alpha.? Database Changes
 * data.message.server[0] is built on every message event, Reducing the calls needed in send.js to db
 * db changes, the following columns have been added
@@ -59,6 +63,7 @@
     > - `badwords` - profanity filter
     > - `menupersist` - manages the menu persist variable
     > - `whitelisted` - NOT IN USE, Yet!
+    > - `profanity` - manages profanity filter variable
  
 ### 1.3.0-alpha.? Misc. Changes
 * Help menu updated
@@ -68,6 +73,7 @@
 * servertags and langdetect status added to the settings and check commands
 * Append Dev name to "Developer identity confirmed"
 * Dev Dependencies core to this bot, `gulp-watch` have been updated
+* Certain statement has been converted to try statements to allow for better error handling
 
 ------------
 
