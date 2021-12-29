@@ -48,7 +48,7 @@
 * `!tr settings reset` Will reset all settings to the default value.
 * `!tr stop for server` Will stop all translation task serverwide
 * `!tr stop for server serverID` Will stop all translation task of target Server serverwide
-* `!tr settings profanity [off/replace/delete] has been added
+* `!tr settings profanity [off/replace/delete]` has been added
     > - `off` - profanity words are allowed. No actions taken
     > - `replace` - Profanity words are replaced with random special characters
     > - `delete` - message is deleted and not translated
