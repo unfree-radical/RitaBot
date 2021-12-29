@@ -89,7 +89,7 @@ module.exports = function run (data)
    // Log task data (dev)
    // --------------------
 
-   logger("dev", data.task);
+   // logger("dev", data.task);
 
    // ------------------------------------------
    // Error if non-manager sets channel as dest
@@ -123,7 +123,7 @@ module.exports = function run (data)
 
             }
             // console.log(`DEBUG: Task for is "Me"`);
-            console.log(`DEBUG: ${!data.cmd.for.includes("me")}`);
+            // console.log(`DEBUG: ${!data.cmd.for.includes("me")}`);
             break Override;
 
          }
@@ -304,7 +304,7 @@ module.exports = function run (data)
          {
 
             const channel = data.message.client.channels.cache.get(dest.slice(3));
-            console.log(`${dest.slice(3, -1)}`);
+            // console.log(`${dest.slice(3, -1)}`);
 
             if (channel)
             {

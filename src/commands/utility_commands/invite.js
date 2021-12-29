@@ -57,7 +57,7 @@ function remoteInvite (data)
          if (perms.CREATE_INSTANT_INVITE === true)
          {
 
-            console.log(`${perms.CREATE_INSTANT_INVITE}`);
+            // console.log(`${perms.CREATE_INSTANT_INVITE}`);
             let defaultChannel = "";
             Override: if (target.systemChannel)
             {

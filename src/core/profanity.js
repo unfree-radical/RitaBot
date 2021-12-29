@@ -31,7 +31,6 @@ function detect (data)
 function profanityFilter (data)
 {
 
-
    // ----------------
    // Replace Badwords
    // ----------------
@@ -46,9 +45,10 @@ function profanityFilter (data)
    }
 
    censorjs.setWordList(wordList);
-   censorjs.clean(data.text);
+   const cleaned = censorjs.clean(data.text);
+   // console.log(`DEBUG: ${cleaned}`);
+   data.text = cleaned;
    data.censored = true;
-
 
 }
 
