@@ -482,7 +482,7 @@ function getSettings (data)
    // Profanity Fliter
    // ----------------
 
-   async function badWords (data)
+   async function profanity (data)
    {
 
       const badWordsVariable = data.cmd.params.split(" ")[1].toLowerCase();
@@ -1034,12 +1034,12 @@ function getSettings (data)
    const validSettings = {
       // "announce": announcement,
       // add,
-      "badwords": badWords,
       "flagpersist": setFlagPersistence,
       "langdetect": langDetect,
       "listservers": listServers,
       "menupersist": setMenuPersistence,
       "ownerdb": ownerUpdate,
+      profanity,
       "reactpersist": setReactPersistence,
       reset,
       "serverdb": serverUpdate,
