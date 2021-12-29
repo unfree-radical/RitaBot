@@ -21,10 +21,7 @@ if (fs.existsSync(`${path}.env`))
 {
 
    // console.log("main env exists");
-   const env = `${__dirname.slice(
-      0,
-      -3
-   )}.env`;
+   const env = `${path}.env`;
    module.require("dotenv").config({
       "path": env
    });
@@ -34,10 +31,7 @@ else if (fs.existsSync(`${path}.env.json`))
 {
 
    // console.log("json env exists");
-   const env = `${__dirname.slice(
-      0,
-      -3
-   )}.env.json`;
+   const env = `${path}.env.json`;
    module.require("dotenv-json")({
       "path": env
    });
