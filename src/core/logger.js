@@ -65,8 +65,10 @@ function activityHookSend (data)
 
    let AID = null;
    let ATO = null;
+   const activityID = process.env.DISCORD_ACTIVITY_WEBHOOK_ID;
+   const activityToken = process.env.DISCORD_ACTIVITY_WEBHOOK_TOKEN;
 
-   if (!process.env.DISCORD_ACTIVITY_WEBHOOK_ID || !process.env.DISCORD_ACTIVITY_WEBHOOK_TOKEN)
+   if (!activityID || !activityToken || activityID === "YOUR WEBHOOK ID" || activityToken === "YOUR WEBHOOK TOKEN")
    {
 
       AID = process.env.DISCORD_DEBUG_WEBHOOK_ID;
