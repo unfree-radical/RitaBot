@@ -68,7 +68,7 @@ const {AutoPoster} = require("topgg-autoposter");
 
 // your discord.js or eris client
 const topggLogin = auth.topggToken;
-if (!topggLogin)
+if (!topggLogin || topggLogin === " ")
 {
 
    console.log("no top.gg token present");
