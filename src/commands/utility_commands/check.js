@@ -268,7 +268,7 @@ function getCheck (data)
    data.text =
       `:warning:  **\`${data.cmd.params
       }\`** is not a valid check option. run ` +
-      `${data.config.translateCmdShort} check\` to learn more.`;
+      `${data.config.translateCmdShort} help check\` to learn more.`;
 
    // -------------
    // Send message
