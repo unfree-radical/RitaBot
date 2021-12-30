@@ -194,6 +194,7 @@ module.exports = function run (data)
             async function getServerInfo (server)
             {
 
+               const activeTasks = server[0].activeTasks - server[0].activeUserTasks;
                if (!target)
                {
 
@@ -209,6 +210,7 @@ module.exports = function run (data)
                      `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                      `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                      `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
+                     `:repeat:  Tasks  **\`${activeTasks}\`**  channels and **\`${server[0].activeUserTasks}\`**  users\n\n` +
                      `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
                      `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +
                      `:notebook:  **\`${server[0].embedon}\`**  messages have been sent in **\`Embed On\`** format\n\n` +
@@ -234,6 +236,7 @@ module.exports = function run (data)
                   `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
+                  `:repeat:  Tasks  **\`${activeTasks}\`**  channels and **\`${server[0].activeUserTasks}\`**  users\n\n` +
                   `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
                   `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
                   `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +
@@ -251,6 +254,7 @@ module.exports = function run (data)
                   `Server Joined Rita Network: \`\`\`${server[0].createdAt}\`\`\`\n` +
                   `:bar_chart:  In total **\`${server[0].message}\`** messages in this server have been sent\n\n` +
                   `:chart_with_upwards_trend:  RITA has translated **\`${server[0].translation}\`**  for this server\n\n` +
+                  `:repeat:  Tasks  **\`${activeTasks}\`**  channels and **\`${server[0].activeUserTasks}\`**  users\n\n` +
                   `:person_facepalming: Users in Server: **\`${target.memberCount}\`**\n\n` +
                   `:frame_photo:  A total of **\`${server[0].images}\`**  images have been sent and **\`${server[0].gif}\`** Gif's have been shared\n\n` +
                   `:flag_white:  **\`${server[0].react}\`**  messages have been translated with flag reactions \n\n` +

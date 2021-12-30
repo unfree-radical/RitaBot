@@ -85,9 +85,8 @@ function startTranslation (data, i, row)
    {
 
       const footerExtra = {
-         "icon_url": data.message.guild.iconURL(),
          "text": `${data.footer.text
-         } ‹ ${data.message.guild.name} | reply with ${replyID}:`
+         } ‹ ${data.message.guild.name} >`
 
       };
 

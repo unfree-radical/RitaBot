@@ -106,10 +106,14 @@ module.exports = function run (data)
          );
 
       }
+      data.footer = {
+         "text": "This message may self-destruct in one minute"
+      };
       embed.
          setColor(colors.get(data.color)).
-         setDescription(`Developer Identity confirmed (@${devTag}):\n\n${data.text}`).
-         setTimestamp();
+         setDescription(`Developer Identity confirmed: ${devTag}\n\n${data.text}`).
+         setTimestamp().
+         setFooter(data.footer);
       // -------------
       // Send message
       // -------------

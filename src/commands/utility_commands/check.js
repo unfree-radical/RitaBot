@@ -41,6 +41,8 @@ function getCheck (data)
                return sendMessage(data);
 
             }
+            const activeTasks = server[0].activeTasks - server[0].activeUserTasks;
+
             if (!target)
             {
 
@@ -64,7 +66,8 @@ function getCheck (data)
                `* Warn Count: ${server[0].warncount}\n` +
                `* Eject Count: ${server[0].ejectcount}\n` +
                `* Warn Status: ${server[0].warn}\n` +
-               `* Blacklist Status: ${server[0].blacklisted}\n\n` +
+               `* Blacklist Status: ${server[0].blacklisted}\n` +
+               `* Tasks: ${activeTasks} channels and ${server[0].activeUserTasks} users\n\n` +
                "```" +
 
                "```md\n" +
@@ -96,7 +99,8 @@ function getCheck (data)
                `* Warn Count: ${server[0].warncount}\n` +
                `* Eject Count: ${server[0].ejectcount}\n` +
                `* Warn Status: ${server[0].warn}\n` +
-               `* Blacklist Status: ${server[0].blacklisted}\n\n` +
+               `* Blacklist Status: ${server[0].blacklisted}\n` +
+               `* Tasks: ${activeTasks} channels and ${server[0].activeUserTasks} users\n\n` +
                "```" +
 
                "```md\n" +
@@ -319,6 +323,7 @@ module.exports = function run (data)
          async function getServerInfo (server)
          {
 
+            const activeTasks = server[0].activeTasks - server[0].activeUserTasks;
             // const user = data.message.guild.members.cache.get(data.message.author.id);
             const bot = target.members.cache.get(data.message.client.user.id);
             const owner = await target.fetchOwner();
@@ -341,7 +346,8 @@ module.exports = function run (data)
                `* Warn Count: ${server[0].warncount}\n` +
                `* Eject Count: ${server[0].ejectcount}\n` +
                `* Warn Status: ${server[0].warn}\n` +
-               `* Blacklist Status: ${server[0].blacklisted}\n\n` +
+               `* Blacklist Status: ${server[0].blacklisted}\n` +
+               `* Tasks: ${activeTasks} channels and ${server[0].activeUserTasks} users\n\n` +
                "```" +
 
                "```md\n" +

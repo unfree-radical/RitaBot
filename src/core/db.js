@@ -708,13 +708,34 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
       });
 
    }
+   else if (origin.includes("user"))
+   {
+
+      let dest1 = "@";
+      dest1 += dest;
+
+      console.log("DEBUG: getTasks user");
+      return Tasks.findAll(
+         {"where": {"dest": dest1}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
    else if (origin.includes("target"))
    {
 
       let dest1 = "@";
       dest1 += dest;
 
-      console.log("DEBUG: getTasks @");
+      console.log("DEBUG: getTasks target");
       return Tasks.findAll(
          {"where": {"server": id,
             "dest": dest1}},
@@ -730,7 +751,43 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
       });
 
    }
-   console.log("DEBUG: getTasks All");
+   else if (origin.includes("server"))
+   {
+
+      console.log("DEBUG: getTasks server");
+      return Tasks.findAll(
+         {"where": {"server": dest}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   else if (origin.includes("channel"))
+   {
+
+      console.log("DEBUG: getTasks channel");
+      return Tasks.findAll(
+         {"where": {dest}},
+         {"raw": true}
+      ).then(function res (result, err)
+      {
+
+         cb(
+            err,
+            result
+         );
+
+      });
+
+   }
+   // console.log("DEBUG: getTasks All");
    return Tasks.findAll(
       {"where": {origin}},
       {"raw": true}
