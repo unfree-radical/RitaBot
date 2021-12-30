@@ -46,6 +46,7 @@
     > - `everyone` - Attention tags are, meaning only `@user` will work
     > - `all` - All tags are disabled, meaning `@user`, `@everyone` and `@here` will NOT work
 * `!tr settings reset` Will reset all settings to the default value.
+* `!tr settings langDetect [on/off]` Turns language detection footer on for translated messages
 * `!tr stop for server` Will stop all translation task serverwide
 * `!tr stop for server serverID` Will stop all translation task of target Server serverwide
 * `!tr settings profanity [off/replace/delete]` has been added
@@ -63,6 +64,7 @@
     > - `badwords` - profanity filter
     > - `menupersist` - manages the menu persist variable
     > - `whitelisted` - NOT IN USE, Yet!
+    > - `langdetect` - manages language detection footer variable
     > - `profanity` - manages profanity filter variable
  
 ### 1.3.0-alpha.? Misc. Changes

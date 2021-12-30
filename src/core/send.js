@@ -15,8 +15,8 @@ const colors = require("./colors");
 const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
-const {MessageEmbed} = require("discord.js");
-const embed = new MessageEmbed();
+// const {MessageEmbed} = require("discord.js");
+// const embed = new MessageEmbed();
 // const discord = require("discord.js");
 const webHookName = "RITA";
 const error = require("./error");
@@ -994,11 +994,15 @@ function embedOff (data)
       {
 
          // console.log("DEBUG: Line 946 - Send.js");
-         embed.
-            setAuthor(data.message.author.username, data.message.author.displayAvatarURL()).
-            setColor(colors.get(data.color)).
-            setDescription(data.text).
-            setFooter(data.footer.text);
+         var embed = {
+            "author": {
+               "icon_url": data.message.client.user.displayAvatarURL(),
+               "name": data.message.client.user.username
+            },
+            "color": colors.get(data.color),
+            "description": data.text,
+            "footer": data.footer
+         };
          sendAttachments(data);
          data.channel.send({"embeds": [embed]});
 

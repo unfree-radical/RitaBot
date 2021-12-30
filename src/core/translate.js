@@ -678,7 +678,6 @@ module.exports = function run (data) // eslint-disable-line complexity
 
          }
          if (data.footer)
-
          {
 
             if (data.message.server[0].langdetect === true)

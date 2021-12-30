@@ -829,11 +829,14 @@ module.exports = function run (data)
             );
 
          }
+         data.footer = {
+            "text": "This message will self-destruct in one minute"
+         };
          embed.
             setColor(colors.get(data.color)).
             setDescription("This command is available only to Developers. \n\n").
             setTimestamp().
-            setFooter("This message will self-destruct in one minute");
+            setFooter(data.footer);
 
          // -------------
          // Send message

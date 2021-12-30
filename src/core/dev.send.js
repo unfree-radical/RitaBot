@@ -134,11 +134,14 @@ module.exports = function run (data)
 
    }
    data.text = ":cop:  This Command is for bot developers only.";
+   data.footer = {
+      "text": "This message may self-destruct in one minute"
+   };
    embed.
       setColor(colors.get(data.color)).
       setDescription(data.text).
       setTimestamp().
-      setFooter("This message will self-destruct in one minute");
+      setFooter(data.footer);
 
    // -------------
    // Send message

@@ -56,25 +56,25 @@ module.exports = function run (data)
 {
 
    const profanity = data.message.server[0].badwords;
-   console.log(`${[profanity]}`);
+   console.log(`DEBUG: Profanity Variable - ${[profanity]}`);
    try
    {
 
       if (profanity === "replace")
       {
 
-         console.log(`DEBUG: Replace variable detected`);
+         // console.log(`DEBUG: Replace variable detected`);
          return profanityFilter(data);
 
       }
       else if (profanity === "delete")
       {
 
-         console.log(`DEBUG: Delete variable detected`);
+         // console.log(`DEBUG: Delete variable detected`);
          return profanityFilter(data);
 
       }
-      console.log("DEBUG: This line should not trigger");
+      // console.log("DEBUG: This line should not trigger");
 
    }
    catch (err)

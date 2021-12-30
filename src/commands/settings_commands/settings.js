@@ -1088,7 +1088,7 @@ module.exports = function run (data)
    // Command allowed by admins only
    // -------------------------------
 
-   Override: if (data.message.isOwner)
+   Override: if (!data.message.isOwner)
    {
 
       if (data.message.isDev)

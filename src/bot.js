@@ -25,6 +25,7 @@ if (fs.existsSync(`${path}.env`))
    module.require("dotenv").config({
       "path": env
    });
+   console.log("----------------------------------------\n.env file loaded");
 
 }
 else if (fs.existsSync(`${path}.env.json`))
@@ -35,6 +36,7 @@ else if (fs.existsSync(`${path}.env.json`))
    module.require("dotenv-json")({
       "path": env
    });
+   console.log("----------------------------------------\n.env.json file loaded");
 
 }
 
@@ -72,7 +74,7 @@ const topggLogin = auth.topggToken;
 if (!topggLogin || topggLogin === " ")
 {
 
-   console.log("no top.gg token present");
+   console.log("----------------------------------------\nNo top.gg token present");
 
 }
 else

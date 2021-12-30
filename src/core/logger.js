@@ -37,72 +37,97 @@ function hookSend (data)
 {
 
    const hsData = {
-      "id": process.env.DISCORD_DEBUG_WEBHOOK_ID,
-      "token": process.env.DISCORD_DEBUG_WEBHOOK_TOKEN
+      "id": null,
+      "token": null
    };
+   const debugID = process.env.DISCORD_DEBUG_WEBHOOK_ID;
+   const debugToken = process.env.DISCORD_DEBUG_WEBHOOK_TOKEN;
+
+   if (!debugID || !debugToken || debugID === "YOUR WEBHOOK ID" || debugToken === "YOUR WEBHOOK TOKEN")
+   {
+
+      hsData.id = null;
+      hsData.token = null;
+
+   }
+   else
+   {
+
+      hsData.id = process.env.DISCORD_DEBUG_WEBHOOK_ID;
+      hsData.token = process.env.DISCORD_DEBUG_WEBHOOK_TOKEN;
+
+   }
+
 
    const hook = new discord.WebhookClient(hsData);
    const embed = new MessageEmbed({
       "color": colors(data.color),
       "description": data.msg,
-      "footer": {
-         "text": data.footer
-      },
+      "footer": data.footer,
       "title": data.title
    });
+
+   if (hsData.id === null)
+   {
+
+      return;
+
+   }
 
    return hook.send({"embeds": [embed]}).catch((err) =>
    {
 
-      console.error(`hook.send error:\n${err}`);
+      console.error(`ERROR: Logger.js - hookSend error:\n${err}`);
 
    });
+
 
 }
 
 function activityHookSend (data)
 {
 
-   let AID = null;
-   let ATO = null;
+   const ahsData = {
+      "id": null,
+      "token": null
+   };
    const activityID = process.env.DISCORD_ACTIVITY_WEBHOOK_ID;
    const activityToken = process.env.DISCORD_ACTIVITY_WEBHOOK_TOKEN;
 
    if (!activityID || !activityToken || activityID === "YOUR WEBHOOK ID" || activityToken === "YOUR WEBHOOK TOKEN")
    {
 
-      AID = process.env.DISCORD_DEBUG_WEBHOOK_ID;
-      ATO = process.env.DISCORD_DEBUG_WEBHOOK_TOKEN;
+      ahsData.id = process.env.DISCORD_DEBUG_WEBHOOK_ID;
+      ahsData.token = process.env.DISCORD_DEBUG_WEBHOOK_TOKEN;
 
    }
    else
    {
 
-      AID = process.env.DISCORD_ACTIVITY_WEBHOOK_ID;
-      ATO = process.env.DISCORD_ACTIVITY_WEBHOOK_TOKEN;
+      ahsData.id = process.env.DISCORD_ACTIVITY_WEBHOOK_ID;
+      ahsData.token = process.env.DISCORD_ACTIVITY_WEBHOOK_TOKEN;
 
    }
-
-   const ahsData = {
-      "id": AID,
-      "token": ATO
-   };
 
    const hook = new discord.WebhookClient(ahsData);
 
    const embed = new MessageEmbed({
       "color": colors(data.color),
       "description": data.msg,
-      "footer": {
-         "text": data.footer
-      },
+      "footer": data.footer,
       "title": data.title
    });
 
+   if (ahsData.id === null)
+   {
+
+      return;
+
+   }
    return hook.send({"embeds": [embed]}).catch((err) =>
    {
 
-      console.error(`hook.send error:\n${err}`);
+      console.error(`ERROR: Logger.js - activityHookSend error:\n${err}`);
 
    });
 
