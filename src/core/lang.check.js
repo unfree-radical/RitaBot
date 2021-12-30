@@ -5,6 +5,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable sort-keys */
+/* eslint-disable prefer-object-has-own */
 const translate = require("rita-google-translate-api");
 const ISO6391 = require("iso-639-1");
 const fn = require("./helpers");
