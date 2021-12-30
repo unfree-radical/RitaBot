@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 // -----------------
 // Global variables
 // Err TAG: RC405??
@@ -6,6 +5,7 @@
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 /* eslint-disable consistent-return */
+/* eslint-disable prefer-const */
 const langCheck = require("../../core/lang.check");
 const db = require("../../core/db");
 const sendMessage = require("../../core/command.send");
@@ -242,8 +242,12 @@ function local (origin, dest, id, data)
 // Local tasks call
 // -----------------
 
-function target (origin, dest, id, data)
+function target (data)
 {
+
+   let origin = null;
+   let dest = null;
+   let id = null;
 
    try
    {
@@ -253,7 +257,7 @@ function target (origin, dest, id, data)
 
          origin = data.cmd.params.split(" ")[0].toLowerCase();
          dest = data.cmd.num;
-         console.log(`DEBUG: Target Called - ${origin} @${dest}`);
+         // console.log(`DEBUG: Target Called - ${origin} @${dest}`);
 
       }
 
@@ -261,7 +265,7 @@ function target (origin, dest, id, data)
    catch (err)
    {
 
-      console.log(`DEBUG: Error - No Variable for ${data.cmd.params}`);
+      // console.log(`DEBUG: Error - No Variable for ${data.cmd.params}`);
       data.text = `:warning:  Missing Variable for ${data.cmd.params}`;
       return sendMessage(data);
 
@@ -454,7 +458,7 @@ module.exports = function run (data)
       }
 
       // console.log("DEBUG: Server / Channel / User Command called");
-      return target(origin, dest, id, data);
+      return target(data);
 
    }
    else if (data.cmd.params.toLowerCase().includes("#"))
