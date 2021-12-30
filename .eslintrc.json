@@ -119,6 +119,7 @@
       "no-ternary": "off",
       "no-nested-ternary": "off",
       "require-atomic-updates" : "off",
+      "prefer-object-has-own" : "off",
       // ---------------------
       // These could be fixed
       // ---------------------
