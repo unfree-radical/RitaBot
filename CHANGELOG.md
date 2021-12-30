@@ -53,6 +53,10 @@
     > - `off` - profanity words are allowed. No actions taken
     > - `replace` - Profanity words are replaced with random special characters
     > - `delete` - message is deleted and not translated
+* `!tr tasks [user/server/channel] {ID}` has been added (Dev Only)
+    > - `user` - Will get all tasks for a targeted user from the DB
+    > - `server` - Will get all tasks for a targeted server from the DB
+    > - `channel` - Will get all tasks for a targeted channel from the DB
  
 ### 1.3.0-alpha.? Database Changes
 * data.message.server[0] is built on every message event, Reducing the calls needed in send.js to db

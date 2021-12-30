@@ -51,8 +51,6 @@ function sendTranslation (data)
 function startTranslation (data, i, row)
 {
 
-   const replyID = row.reply;
-
    // ---------------------------------
    // Add footer to forwarded messages
    // ---------------------------------

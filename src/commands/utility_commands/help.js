@@ -129,7 +129,7 @@ function helpMessage (config, param)
    `# Information Modules\n` +
    `* ${cmd} help stats\n` +
    `* ${cmd} help tasks\n` +
-   `* ${cmd} help settings (Dev Only)\n\n` +
+   `* ${cmd} help settings\n\n` +
    "```" +
 
    "```md\n" +
@@ -705,7 +705,9 @@ function helpMessage (config, param)
    `* ${cmd} check server [ServerID]\n` +
    `* ${cmd} settings updatedb\n` +
    `* ${cmd} settings listservers\n` +
+   `* ${cmd} tasks [user/channle/server] {ID/Target}\n` +
    `* ${cmd} invite server [ServerID]\n\n` +
+
    "```" +
 
    "```md\n" +

@@ -774,7 +774,9 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
 
       console.log("DEBUG: getTasks channel");
       return Tasks.findAll(
-         {"where": {dest}},
+         {"where": {[Op.or]: [
+            {dest},
+            {"origin": dest}]}},
          {"raw": true}
       ).then(function res (result, err)
       {
