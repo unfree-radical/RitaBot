@@ -760,6 +760,7 @@ function helpMessage (config, param)
       `# COMING SOON!!\n` +
       `* ${cmd} check @user = Check user permissions.\n` +
       "```\n";
+
    // ----------------
    // Proccess result
    // ----------------
