@@ -401,7 +401,7 @@ exports.listen = function listen (client)
             async function getServerInfo (server)
             {
 
-               console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
+               // console.log(`Server: ${guild.id} has a blacklisted status of: ${server[0].blacklisted}`);
                logger(
                   "activity",
                   {
