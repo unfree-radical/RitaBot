@@ -692,7 +692,7 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
    if (origin.includes("me"))
    {
 
-      console.log("DEBUG: getTasks Me");
+      // console.log("DEBUG: getTasks Me");
       return Tasks.findAll(
          {"where": {"server": id,
             dest}},
@@ -714,7 +714,7 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
       let dest1 = "@";
       dest1 += dest;
 
-      console.log("DEBUG: getTasks user");
+      // console.log("DEBUG: getTasks user");
       return Tasks.findAll(
          {"where": {"dest": dest1}},
          {"raw": true}
@@ -735,7 +735,7 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
       let dest1 = "@";
       dest1 += dest;
 
-      console.log("DEBUG: getTasks target");
+      // console.log("DEBUG: getTasks target");
       return Tasks.findAll(
          {"where": {"server": id,
             "dest": dest1}},
@@ -754,7 +754,7 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
    else if (origin.includes("server"))
    {
 
-      console.log("DEBUG: getTasks server");
+      // console.log("DEBUG: getTasks server");
       return Tasks.findAll(
          {"where": {"server": dest}},
          {"raw": true}
@@ -772,7 +772,7 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
    else if (origin.includes("channel"))
    {
 
-      console.log("DEBUG: getTasks channel");
+      // console.log("DEBUG: getTasks channel");
       return Tasks.findAll(
          {"where": {[Op.or]: [
             {dest},
