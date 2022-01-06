@@ -224,7 +224,7 @@ function logJoin (guild, owner)
 
 
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -238,7 +238,7 @@ function logJoin (guild, owner)
          "title": "Joined Guild"
 
       });
-      console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Join: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 
@@ -261,7 +261,7 @@ function logLeave (guild, owner)
          "```md\n> "}${guild.id}\n@${owner.user.username}#${owner.user.discriminator}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nGuild Owner: ${owner.user.username}#${owner.user.discriminator}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
    else
@@ -274,7 +274,7 @@ function logLeave (guild, owner)
          "```md\n> "}${guild.id}\n${guild.memberCount} members\n\`\`\`${spacer}${spacer}`,
          "title": "Left Guild"
       });
-      console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
+      // console.log(`----------------------------------------\nGuild Left: ${guild.name}\nGuild ID: ${guild.id}\nSize: ${guild.memberCount}\n----------------------------------------`);
 
    }
 
