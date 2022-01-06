@@ -318,7 +318,7 @@ module.exports = function run (type, data, subtype = null, id)
 
          {
 
-            // console.log("Has guild");
+            // console.log("DEBUG: Has guild");
             const id = data.message.guild.name;
             return logTypes[type](
                data,
@@ -328,11 +328,11 @@ module.exports = function run (type, data, subtype = null, id)
 
          }
 
-         // console.log("Has Message");
+         // console.log("DEBUG: Has Message");
 
       }
 
-      // console.log("Has");
+      // console.log("DEBUG: Has");
 
       return logTypes[type](
          data,
