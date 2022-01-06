@@ -73,7 +73,7 @@ function e50013 (data, eh, forwardChannel, sendData)
          if (res.length < 1 || !res)
          {
 
-            return console.log(`Somthing has gone really really wrong`);
+            return console.log(`DEBUG: Tasks Error - Somthing has gone really really wrong`);
 
          }
 
@@ -130,7 +130,7 @@ function e50013 (data, eh, forwardChannel, sendData)
             `:no_entry:  **${data.message.client.user.username}** does not have permission to write in ` +
             `the ${forwardChannel.name} channel on your server **` +
             `${sendData.channel.guild.name}**. Please fix.`;
-            console.log("DEBUG: Line 128 - Send.js - Owner Check");
+            // console.log("DEBUG: Line 128 - Send.js - Owner Check");
             return sendData.channel.guild.owner.
                send(writeErr).
                catch((err) => console.log("error", err, "warning", sendData.channel.guild.name));
