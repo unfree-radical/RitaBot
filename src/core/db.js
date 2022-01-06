@@ -55,7 +55,7 @@ db.
 
       logger(
          "dev",
-         `----------------------------------------\nSuccessfully connected to database`
+         `----------------------------------------\nAttempting Database Connection....`
       );
 
    }).
