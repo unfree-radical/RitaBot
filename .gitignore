@@ -10,3 +10,4 @@ serverlist.txt
 package-lock.json.old
 src/files/serverlist.txt
 .env.json
+src/files/userlist.txt

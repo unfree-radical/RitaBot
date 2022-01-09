@@ -41,6 +41,7 @@ const cmdTranslateAuto = require("./translation_commands/translate.auto");
 const cmdTranslateStop = require("./translation_commands/translate.stop");
 const cmdTranslateTasks = require("./translation_commands/translate.tasks");
 const cmdVersion = require("./info_commands/version");
+const cmdPin = require("./utility_commands/user.auth");
 
 
 // ---------------------------------------
@@ -375,6 +376,7 @@ module.exports = function run (data)
             "list": cmdList,
             "mute": cmdMod.mute,
             "newbot": cmdJoin.newBot,
+            "pin": cmdPin,
             "prefix": cmdPrefix,
             "proc": cmdMisc.proc,
             "react": cmdReact,

@@ -183,6 +183,73 @@ function getSettings (data)
 
    }
 
+   // -----------
+   // List Users
+   // -----------
+
+   async function listUsers (data)
+   {
+
+      if (data.message.isDev)
+      {
+
+         data.text = "Users - ";
+
+
+         const serverId = data.cmd.num;
+         const target = data.message.client.guilds.cache.get(serverId);
+         const members = await target.members.fetch();
+         const activeMembers = Array.from(members);
+
+         data.text += `${activeMembers.length}\n\n`;
+
+         activeMembers.forEach((member) =>
+         {
+
+            data.text += `ID: ${member[1].id}\n`;
+
+         });
+
+         // ------------------
+         // Send message/file
+         // ------------------
+         try
+         {
+
+            setTimeout(() => data.message.delete(), auth.time.short);
+
+         }
+         catch (err)
+         {
+
+            console.log(
+               "Command Message Deleted Error, settings.js = Line 157",
+               err
+            );
+
+         }
+         fs.writeFileSync(
+            path.resolve(
+               __dirname,
+               "../../files/userlist.txt"
+            ),
+            data.text
+         );
+         // let attachments = Array.from(data.attachments.values());
+         data.message.channel.send("User List");
+         data.message.channel.send({"files": ["./src/files/userlist.txt"]});
+
+      }
+      else
+      {
+
+         data.text = ":cop:  This Command is for bot developers only.";
+         return sendMessage(data);
+
+      }
+
+   }
+
    // --------------------
    // Command Persistence
    // --------------------
@@ -1037,6 +1104,7 @@ function getSettings (data)
       "flagpersist": setFlagPersistence,
       "langdetect": langDetect,
       "listservers": listServers,
+      "listssers": listUsers,
       "menupersist": setMenuPersistence,
       "ownerdb": ownerUpdate,
       profanity,
