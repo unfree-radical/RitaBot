@@ -21,11 +21,24 @@ module.exports = function run (data)
 {
 
 
-   fn.getUserPin(data.cmd.num, (pin) =>
+   if (!data.cmd.num)
+   {
+
+      return fn.getUserPin(data.message.author.id, (pin) =>
+      {
+
+         // console.log(`DEBUG: ${pin}`);
+         data.message.channel.send(`Your pin is: ${pin}`);
+
+      });
+
+   }
+
+   return fn.getUserPin(data.cmd.num, (pin) =>
    {
 
       // console.log(`DEBUG: ${pin}`);
-      data.message.channel.send(`User pin is: ${pin}`);
+      data.message.channel.send(`That users pin is: ${pin}`);
 
    });
 
