@@ -354,6 +354,12 @@ exports.getUserPin = function getUserPin (UID, cb)
 
       const stage3count = i * 2;
       calc3[i] = Number(stage3[stage3count]) + Number(stage3[stage3count + 1]);
+      if (calc3[i] >= 10)
+      {
+
+         calc3[i] = Number(9);
+
+      }
 
    }
 
