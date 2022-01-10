@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-expressions */
 // -----------------
 // Global variables
 // Err TAG: RS006??
@@ -21,6 +23,7 @@ exports.server_obj = server_obj;
 // ----------------------
 
 // console.log("DEBUG: Pre Stage Database Auth Process");
+
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
       logging: false,
@@ -34,19 +37,27 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
       },
       "storage": process.env.DATABASE_URL
    }) :
-   new Sequelize(
-      process.env.DATABASE_URL,
-      {
-         logging: false,
-         "dialectOptions": {
-            "ssl": {
-               "require": true,
-               "rejectUnauthorized": false
-            },
-            acquireTimeout: 60000
+   process.env.DATABASE_URL.startsWith("mysql") ?
+      new Sequelize(
+         process.env.DATABASE_URL,
+         {
+            logging: false
+
          }
-      }
-   );
+      ) :
+      new Sequelize(
+         process.env.DATABASE_URL,
+         {
+            logging: false,
+            "dialectOptions": {
+               "ssl": {
+                  "require": true,
+                  "rejectUnauthorized": false
+               },
+               acquireTimeout: 60000
+            }
+         }
+      );
 
 db.
    authenticate().

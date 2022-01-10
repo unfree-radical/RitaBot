@@ -90,7 +90,7 @@ exports.listen = function listen (client)
 
          console.log(stripIndent`
             ----------------------------------------
-            All shards online, running DB connection`);
+            All shards online, finalizing DB Setup.`);
 
          logger(
             "custom",
