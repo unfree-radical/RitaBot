@@ -326,6 +326,29 @@ function getHistory (data)
       `# Version 1.2.6-12 - Release Date: 07/11/2021 \n` +
       `# Version 1.2.6-13 - Release Date: 13/11/2021 \n` +
       `# Version 1.2.6-14 - Release Date: 13/11/2021 \n\n` +
+      `# Version 1.2.6-15 - Release Date: 13/12/2021 \n\n` +
+      `# Version 1.2.6-16 - Release Date: 27/12/2021 \n\n` +
+      "```\n";
+
+      // -------------
+      // Send message
+      // -------------
+
+      return sendMessage(data);
+
+   };
+
+   const v130History = function v130History (data)
+   {
+
+      // -------------
+      // Command Code
+      // -------------
+
+      data.color = "info";
+      data.text = `**V1.3.0**\n` +
+      "```md\n" +
+      `# Version 1.2.6 - Release Date: ??/??/2022 \n\n` +
       "```\n";
 
       // -------------
@@ -356,6 +379,9 @@ function getHistory (data)
          `* Guild History 6k - 8k = ${data.cmd.server[0].prefix} history guild 8k\n` +
          `* Guild History 8k - 10k = ${data.cmd.server[0].prefix} history guild 10k\n` +
          `* Guild History 10k - 12k = ${data.cmd.server[0].prefix} history guild 12k\n` +
+         `* Guild History 12k - 14k = ${data.cmd.server[0].prefix} history guild 14k\n` +
+         `* Guild History 14k - 16k = ${data.cmd.server[0].prefix} history guild 16k\n` +
+         `* Guild History 16k - 18k = ${data.cmd.server[0].prefix} history guild 18k\n` +
          "```\n";
 
          return sendMessage(data);
@@ -589,11 +615,51 @@ function getHistory (data)
          data.color = "info";
          data.text = `**Guilds Stats**\n` +
          "```md\n" +
-         `# 14000 Guilds - 19/11/2021\n` +
-         `# 14100 Guilds - 20/11/2021\n` +
-         `# 14200 Guilds - 21/11/2021\n` +
-         `# 14300 Guilds - 21/11/2021\n` +
-         `# 14400 Guilds - 22/11/2021\n\n` +
+         `# 14000 Guilds - 19/12/2021\n` +
+         `# 14100 Guilds - 20/12/2021\n` +
+         `# 14200 Guilds - 21/12/2021\n` +
+         `# 14300 Guilds - 21/12/2021\n` +
+         `# 14400 Guilds - 22/12/2021\n` +
+         `# 14500 Guilds - 23/12/2021\n` +
+         `# 14600 Guilds - 24/12/2021\n` +
+         `# 14700 Guilds - 25/12/2021\n` +
+         `# 14800 Guilds - 26/12/2021\n` +
+         `# 14900 Guilds - 27/12/2021\n` +
+         `# 15000 Guilds - 28/12/2021\n` +
+         `# 15100 Guilds - 29/12/2021\n` +
+         `# 15200 Guilds - 29/12/2021\n` +
+         `# 15300 Guilds - 30/12/2021\n` +
+         `# 15400 Guilds - 31/12/2021\n` +
+         `# 15500 Guilds - 01/01/2022\n` +
+         `# 15600 Guilds - 02/01/2022\n` +
+         `# 15700 Guilds - 02/01/2022\n` +
+         `# 15800 Guilds - 03/01/2022\n` +
+         `# 15900 Guilds - 04/01/2022\n` +
+         `# 16000 Guilds - 04/01/2022\n\n` +
+         "```\n";
+
+      }
+
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "18k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# 16000 Guilds - 04/01/2022\n` +
+         `# 16100 Guilds - 05/01/2022\n` +
+         `# 16200 Guilds - 05/01/2022\n` +
+         `# 16300 Guilds - 06/01/2022\n` +
+         `# 16400 Guilds - 07/01/2022\n` +
+         `# 16500 Guilds - 07/01/2022\n` +
+         `# 16600 Guilds - 08/01/2022\n` +
+         `# 16700 Guilds - 09/01/2022\n` +
+         `# 16800 Guilds - 09/01/2022\n` +
+         `# 16900 Guilds - 10/01/2022\n` +
+         `# 17000 Guilds - 10/01/2022\n` +
+         `# 17100 Guilds - 11/01/2022\n` +
+         `# 17200 Guilds - 11/01/2022\n` +
+         `# 17300 Guilds - 12/01/2022\n\n` +
          "```\n";
 
       }
@@ -620,6 +686,7 @@ function getHistory (data)
       "1.2.4": v124History,
       "1.2.5": v125History,
       "1.2.6": v126History,
+      "1.3.0": v130History,
       "guild": guilds
    };
 
@@ -689,6 +756,11 @@ module.exports = function run (data)
       `# Version 1.2.4 - Release Date: 09/06/2021 \n` +
       `# Version 1.2.5 - Release Date: 05/07/2021 \n` +
       `# Version 1.2.6 - Release Date: 01/10/2021 \n` +
+      `* There are ?? iterations of this Version\n\n` +
+      "```\n" +
+      "```md\n" +
+      `--------------- Version 1.3 --------------- \n` +
+      `# Version 1.3.0 - Release Date: ??/??/2022 \n` +
       `* There are ?? iterations of this Version\n\n` +
       "```\n";
 
