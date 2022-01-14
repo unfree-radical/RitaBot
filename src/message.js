@@ -38,7 +38,7 @@ module.exports = async function run (config, message)
    // Ignore messages by bots
    // ------------------------
    const bot2botstyle = db.server_obj[message.guild.id].db.bot2botstyle;
-
+   // test
    if (bot2botstyle === "off")
    {
 
