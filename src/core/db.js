@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-expressions */
 // -----------------
 // Global variables
 // Err TAG: RS006??
@@ -10,6 +8,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable quote-props */
 /* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-expressions */
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
@@ -296,7 +296,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       await Stats.upsert({logging: false,
          "id": "bot"});
-      await this.updateColumns();
+      // await this.updateColumns();
       // console.log("DEBUG: New columns should be added Before this point.");
       await Servers.upsert({logging: false,
          "id": "bot",
