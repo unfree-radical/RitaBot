@@ -79,9 +79,7 @@ const client = new Client({
       "VoiceStateManager": 15 // guild.voiceStates
    }),
    "intents": myIntents,
-   "waitGuildTimeout": 7000,
-   // "messageCacheLifetime": 1200,
-   // "messageSweepInterval": 1200
+   "waitGuildTimeout": 7000
 });
 const auth = require("./core/auth");
 
