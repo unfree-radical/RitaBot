@@ -7,8 +7,8 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-bitwise */
 /* eslint-disable no-unused-vars */
-const {MessageEmbed} = require("discord.js");
-const discord = require("discord.js");
+const {MessageEmbed} = require("discord.js-light");
+const discord = require("discord.js-light");
 const auth = require("./auth");
 const colors = require("./colors").get;
 const spacer = "​                                                          ​";

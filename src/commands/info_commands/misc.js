@@ -149,7 +149,7 @@ module.exports.proc = function proc (data)
    const memory = process.memoryUsage();
    const memoryFormat = oneLine`
       **\`${byteFormat(memory.rss)}\`** \`rss\` ·
-      **\`${byteFormat(memory.heapUsed)}\`**\`/\`
+      **\`${byteFormat(memory.heapUsed)}\`** \`/\`
       **\`${byteFormat(memory.heapTotal)}\`** \`heap\` ·
       **\`${byteFormat(memory.external)}\`** \`external\`
    `;
@@ -206,6 +206,41 @@ module.exports.proc = function proc (data)
    // -------------
 
    sendMessage(data);
+
+};
+
+// --------------
+// Cache Message
+// --------------
+
+module.exports.cache = function cache (data)
+{
+
+   // ------------------
+   // Gather ID Details
+   // ------------------
+
+   // console.log("DEBUG: ID Message");
+
+   data.text = stripIndent`
+   **:robot: Cached Client:** \`${data.message.client.user.username}\`
+
+   **:homes: Guilds:** \`${data.message.client.guilds.cache.size || "N/A"}\`
+
+   **:books: Channels:** \`${data.message.client.channels.cache.size || "N/A"}\`
+
+   **:people_holding_hands: Users:** \`${data.message.client.users.cache.size || "N/A"}\`
+
+   **:slight_smile: Emojis:** \`${data.message.client.emojis.cache.size || "N/A"}\`
+
+   **:heart: Message Lifetime:** \`${data.message.client.options.messageCacheLifetime || "N/A"}\`
+
+   **:broom: Sweep Interval:** \`${data.message.client.options.messageSweepInterval || "N/A"}\``;
+   // -------------
+   // Send message
+   // -------------
+
+   return sendMessage(data);
 
 };
 

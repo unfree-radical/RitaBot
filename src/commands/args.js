@@ -280,7 +280,7 @@ module.exports = function run (data)
 
    db.getServerInfo(
       id,
-      function getServerInfo (server)
+      async function getServerInfo (server)
       {
 
          output.server = server;
@@ -327,11 +327,13 @@ module.exports = function run (data)
 
          data.canWrite = true;
 
+         const user = await data.message.channel.guild.members.fetch(data.message.client.user.id);
+
          if (data.message.channel.type === "GUILD_TEXT")
          {
 
             data.canWrite = fn.checkPerm(
-               data.message.channel.guild.me,
+               user,
                data.message.channel,
                "SEND_MESSAGES"
             );
@@ -357,6 +359,7 @@ module.exports = function run (data)
             "ban": cmdMod.ban,
             "blacklist": cmdBlacklist.blacklist,
             "bot2bot": cmdBot2bot,
+            "cache": cmdMisc.cache,
             "check": cmdCheck,
             "cl": cmdCL,
             "create": cmdCreate,
@@ -372,7 +375,7 @@ module.exports = function run (data)
             "info": cmdHelp,
             "invite": cmdInvite,
             "kick": cmdMod.kick,
-            "last": cmdTranslateLast.run,
+            "last": cmdTranslateLast,
             "list": cmdList,
             "mute": cmdMod.mute,
             "newbot": cmdJoin.newBot,

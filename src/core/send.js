@@ -15,9 +15,9 @@ const colors = require("./colors");
 const fn = require("./helpers");
 const db = require("./db");
 const logger = require("./logger");
-// const {MessageEmbed} = require("discord.js");
+// const {MessageEmbed} = require("discord.js-light");
 // const embed = new MessageEmbed();
-// const discord = require("discord.js");
+// const discord = require("discord.js-light");
 const webHookName = "RITA";
 const error = require("./error");
 const auth = require("../core/auth");
@@ -145,7 +145,7 @@ function e50013 (data, eh, forwardChannel, sendData)
 // Permission Check
 // -----------------
 
-function checkPerms (data, sendBox)
+async function checkPerms (data, sendBox)
 {
 
    // ------------------------------------------------------------------------
@@ -213,12 +213,13 @@ function checkPerms (data, sendBox)
          // ----------------------------------------------
 
          let canWriteDest = true;
+         const user = await data.message.channel.guild.members.fetch(data.message.client.user.id);
 
          if (forwardChannel.type === "GUILD_TEXT")
          {
 
             canWriteDest = fn.checkPerm(
-               forwardChannel.guild.me,
+               user,
                forwardChannel,
                "SEND_MESSAGES"
             );
@@ -1151,7 +1152,6 @@ module.exports = function run (data)
       //   `CRITICAL: Send Error, send.js = Run/Line 1032 - SERVER: ${data.message.guild.id}`,
       //   err
       // );
-      console.error(err);
       console.log(`CRITICAL: Send Error, send.js = Run/Line 1032 - SERVER: ${data.message.guild.id}, DEST CHAN: ${data.forward}`);
 
    }

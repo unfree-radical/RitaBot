@@ -7,13 +7,13 @@
 const translate = require("../../core/translate");
 const logger = require("../../core/logger");
 const sendMessage = require("../../core/command.send");
-const auth = require("../../core/auth");
+// const auth = require("../../core/auth");
 
 // -----------------------------
 // Command Disabled Pending Fix
 // -----------------------------
 
-module.exports.run = function run (data)
+/* function old (data)
 {
 
    try
@@ -61,8 +61,8 @@ module.exports.run = function run (data)
 
    });
 
-};
-
+}
+*/
 
 function getCount (count)
 {
@@ -81,7 +81,7 @@ function getCount (count)
 // Translate last
 // ---------------
 
-module.exports.old = function old (data)
+module.exports = function run (data)
 {
 
    // -------------------------

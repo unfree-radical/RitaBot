@@ -48,7 +48,7 @@ else if (fs.existsSync(`${path}.env.json`))
 // )}.env.json`;
 // dotenvJSON({"path": envJson});
 
-const {Client, Options, Intents} = require("discord.js");
+const {Client, Options, Intents} = require("discord.js-light");
 
 const myIntents = new Intents(32509);
 
@@ -56,14 +56,32 @@ const client = new Client({
    "restRequestTimeout": time.long,
    "shards": "auto",
    "makeCache": Options.cacheWithLimits({
-      "GuildBanManager": 20, // guild.bans
+      "ApplicationCommandManager": 0, // guild.commands
+      "BaseGuildEmojiManager": Infinity, // guild.emojis
+      "ChannelManager": Infinity, // client.channels
+      "GuildChannelManager": Infinity, // guild.channels
+      "GuildBanManager": 15, // guild.bans
+      "GuildInviteManager": 15, // guild.invites
       "GuildManager": Infinity, // client.guilds
-      "MessageManager": 2, // channel.messages
-      "PresenceManager": 1, // guild.presences
-      "UserManager": 1 // client.users
+      "GuildMemberManager": Infinity, // guild.members
+      "GuildStickerManager": 15, // guild.stickers
+      "GuildScheduledEventManager": 15, // guild.scheduledEvents
+      "MessageManager": 15, // channel.messages
+      "PermissionOverwriteManager": 15, // channel.permissionOverwrites
+      "PresenceManager": 15, // guild.presences
+      "ReactionManager": 15, // message.reactions
+      "ReactionUserManager": 15, // reaction.users
+      "RoleManager": 15, // guild.roles
+      "StageInstanceManager": 15, // guild.stageInstances
+      "ThreadManager": 15, // channel.threads
+      "ThreadMemberManager": 15, // threadchannel.members
+      "UserManager": Infinity, // client.users
+      "VoiceStateManager": 15 // guild.voiceStates
    }),
    "intents": myIntents,
-   "waitGuildTimeout": 7000
+   "waitGuildTimeout": 7000,
+   // "messageCacheLifetime": 1200,
+   // "messageSweepInterval": 1200
 });
 const auth = require("./core/auth");
 
