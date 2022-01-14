@@ -13,7 +13,7 @@ const auth = require("../../core/auth");
 // Command Disabled Pending Fix
 // -----------------------------
 
-module.exports.old = function old (data)
+module.exports.run = function run (data)
 {
 
    try
@@ -81,7 +81,7 @@ function getCount (count)
 // Translate last
 // ---------------
 
-module.exports.run = function run (data)
+module.exports.old = function old (data)
 {
 
    // -------------------------
@@ -186,7 +186,7 @@ module.exports.run = function run (data)
                   "author": messagesArray[i][1].author,
                   // eslint-disable-next-line spaced-comment
                   //"color": fn.getRoleColor(messagesArray[i][1].member),
-                  "color": messagesArray[i][1].roleColor,
+                  "color": messagesArray[i][1].member.displayColor,
                   "id": [messagesArray[i][1].id],
                   "message": messagesArray[i][1],
                   "msgs": [messagesArray[i][1].content],
