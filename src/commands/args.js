@@ -375,7 +375,7 @@ module.exports = function run (data)
             "info": cmdHelp,
             "invite": cmdInvite,
             "kick": cmdMod.kick,
-            "last": cmdTranslateLast,
+            "last": cmdTranslateLast.old,
             "list": cmdList,
             "mute": cmdMod.mute,
             "newbot": cmdJoin.newBot,

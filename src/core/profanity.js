@@ -57,7 +57,7 @@ module.exports = function run (data)
 {
 
    const profanity = data.message.server[0].badwords;
-   console.log(`DEBUG: Profanity Variable - ${[profanity]}`);
+   // console.log(`DEBUG: Profanity Variable - ${[profanity]}`);
    try
    {
 

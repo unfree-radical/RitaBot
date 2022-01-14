@@ -206,12 +206,14 @@ function getUserColor (data, callback)
    const ft = data.footer;
    const usr = data.message.author;
    const msg = data.message;
+   const color = data.color;
 
    data.forward = fw;
    data.text = txt;
    data.footer = ft;
    data.message.author = usr;
    data.message = msg;
+   data.color = color;
 
 
    callback(data);
