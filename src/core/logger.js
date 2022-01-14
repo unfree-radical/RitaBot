@@ -171,7 +171,7 @@ function errorLog (error, subtype, id)
 
    }
 
-   /*
+
    if (errorTypes[subtype] === ":japanese_ogre:  Unhandled promise rejection")
    {
 
@@ -186,7 +186,7 @@ function errorLog (error, subtype, id)
       "msg": `\`\`\`json\n${error.toString()}\n${error.stack}\n\n` + `Error originated from server: ${id}\`\`\``,
       "title": errorTitle
    });
-   */
+
 
 }
 

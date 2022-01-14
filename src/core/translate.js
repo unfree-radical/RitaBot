@@ -236,7 +236,8 @@ function bufferSend (arr, data)
       data.color = msg.color;
       data.message.author = msg.author;
       data.showAuthor = true;
-      data.message = msg;
+      data.message = data.message || msg;
+
 
       // -------------
       // Send message
@@ -660,7 +661,8 @@ module.exports = function run (data) // eslint-disable-line complexity
          updateServerStats(data.message);
          data.forward = fw;
          data.footer = ft;
-         data.color = data.member.displayColor;
+         // data.color = data.member.displayColor;
+         // data.color = data.message.roleColor;
          data.text = res.text;
          data.showAuthor = true;
          data.detectedLang = detectedLang;
