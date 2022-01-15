@@ -23,6 +23,12 @@ exports.server_obj = server_obj;
 // ----------------------
 
 // console.log("DEBUG: SQL Patch");
+if (!process.env.DATABASE_URL)
+{
+
+   return console.log("ERROR, Missing Database Information");
+
+}
 const regex = (/((mysql):\/\/)((\S*):)((\S*)@)((\S*)\/)(\S*)$/gm);
 const dbString = process.env.DATABASE_URL.split(regex);
 // console.log("DEBUG: Pre Stage Database Auth Process");
