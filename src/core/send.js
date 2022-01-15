@@ -169,7 +169,7 @@ async function checkPerms (data, sendBox)
          "forward": data.forward,
          "guild": data.message.guild,
          "message": data.message,
-         "origin": null,
+         "origin": data.message.channel,
          "reaction": data.reaction,
          "temp": null,
          "text": data.text,
@@ -738,12 +738,14 @@ function embedOff (data)
       if (data.origin.id === data.forward && data.message.server[0].servertags === "none")
       {
 
+         // console.log("DEBUG: Same Dest & None Ping");
          serverPings = [];
 
       }
       else if (data.message.server[0].servertags === "none")
       {
 
+         // console.log("DEBUG: Same Dest & None Ping");
          serverPings = ["everyone", "users"];
 
       }
@@ -751,12 +753,14 @@ function embedOff (data)
       if (data.origin.id === data.forward && data.message.server[0].servertags === "everyone")
       {
 
+         // console.log("DEBUG: Same Dest & None Ping");
          serverPings = [];
 
       }
       else if (data.message.server[0].servertags === "everyone")
       {
 
+         // console.log("DEBUG: Same Dest & None Ping");
          serverPings = ["users"];
 
       }
@@ -764,6 +768,7 @@ function embedOff (data)
       if (data.origin.id === data.forward || data.message.server[0].servertags === "all")
       {
 
+         console.log("DEBUG: Same Dest & None Ping");
          serverPings = [];
 
       }

@@ -1,6 +1,6 @@
 {
   "name": "ritabot",
-  "version": "1.3.0-beta.2",
+  "version": "1.3.0-beta.3",
   "engines": {
     "node": "17.1.0"
   },
