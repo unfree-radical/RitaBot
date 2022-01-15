@@ -773,7 +773,7 @@ function embedOff (data)
       if (data.origin.id === data.forward || data.message.server[0].servertags === "all")
       {
 
-         //console.log("DEBUG: Same Dest & Cross Channel & None Ping");
+         // console.log("DEBUG: Same Dest & Cross Channel & None Ping");
          serverPings = [];
 
       }
