@@ -4,6 +4,7 @@
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
+/* eslint-disable prefer-object-has-own */
 const colors = {
    "default": 41215,
    "err": 13107200,

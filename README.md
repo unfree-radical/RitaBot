@@ -1,7 +1,7 @@
 <p align="center"><a href="https://ritabot.gg/"><img src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" data-canonical-src="https://media3.giphy.com/media/YO4a0qsdVX3Gq3darL/giphy.gif" width="175" height="175" href="https://ritabot.gg/"></a></p>
 <h1 align="center">Rita</h1>
 <p align="center">Breaking the language barrier for free.</p>
-<p align="center">RITA is now used on over 16k Servers, by more than 1.8 Million Users.</p>
+<p align="center">RITA is now used on over 17k Servers, by more than 1.8 Million Users.</p>
 <p align="center">Join the Language Revolution, Invite RITA today.</p>
 <p align="center">
 <a href="https://ritabot.gg/invite"><img src="https://img.shields.io/badge/Invite_RITA-7289DA.svg?"></a>
@@ -36,7 +36,8 @@
 <details>
 <summary></strong>Click to expand contents</strong></summary>
 
-* [Setting up Rita](#new-bot)
+* [Setting up Rita - Pebble](#new-bot-pebble)
+* [Setting up Rita - Heroku](#new-bot-heroku)
 * [Setting up Rita locally](#local)
 * [How to Update your Bot](#update)
 * [Coming Soon](#soon)
@@ -58,7 +59,44 @@
 
 ------
 
-## <a name="new-bot"></a>:computer: Setting up Rita Translator on Heroku
+## <a name="new-bot-pebble"></a>:computer: Setting up Rita Translator on Pebble
+
+<details>
+<summary></strong>Click for instructions</strong></summary>
+
+#### 1. Create a new [Discord Application](https://discordapp.com/developers/applications) in the Discord Developer Portal
+
+* Give app a friendly name and click the **Create App** button
+  * I like the name **C-3PO**, but feel free to pick something different if you fear George Lucas's wrath. Maybe **C-4PO**
+* Take note of the app **CLIENT ID**, you will need it later
+* Scroll down to the **Bot** section
+* Click the **Create a Bot User** button
+* Click the **Yes, do it!** button
+* Copy the bot's **TOKEN**, you will need it later
+
+#### 2. Pebble Hosting Account 
+* Process of creating an account and adding RITA
+
+#### 3. Set up RITA 
+* *If you have any issues running your bot join our [Discord Server](https://discord.gg/invite/mgNR64R)*
+
+#### 4. Invite your bot to your server and configure it!
+* Replace the CLIENTID string in the following URL with your own apps client id from Step 2: 
+    *  **https://discordapp.com/oauth2/authorize?&client_id=CLIENTID&scope=bot&permissions=8**
+    
+* Visit the resulting URL and add your bot to any server where you have admin privileges.
+  * Once added, your bot should show in your server.
+
+    * Your bot is now setup and ready for any translation you have for it to do. Use the commands `!tr help` and `!tr help modules` to learn more about the commands Rita has!
+
+</details>  
+
+------
+
+## <a name="new-bot-heroku"></a>:computer: Setting up Rita Translator on Heroku
+
+<details>
+<summary></strong>Click for instructions</strong></summary>
 
 <p align="center">
 <img src="https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png">
@@ -108,14 +146,16 @@
 * Visit the resulting URL and add your bot to any server where you have admin privileges.
   * Once added, your bot should show in your server, **now go back to [Heroku](https://heroku.com/) and go to the "Deploy" section, scroll down to "Manual Deploy" and deploy the *master* branch. That's it your are good to go!**
     * Your bot is now setup and ready for any translation you have for it to do. Use the commands `!tr help` and `!tr help modules` to learn more about the commands Rita has!
-  
 
-* **Important Note**
- * The `!tr embed` command is changeable whenever you like. It simply decides wether you would like translations to be sent as Webhooks (more user-like, profile picture) or embed (bot sends message with anembed message contintaining user profile picture.)
+</details> 
 
 ------
 
 ## <a name="update"></a>:floppy_disk: How to Update to Stable Branch on Heroku
+
+<details>
+<summary></strong>Click for instructions</strong></summary>
+
 #### 1. Checklist
 * You must have a bot already running on your server, if not then refer to [Setting up a New Bot](#new-bot)
 
@@ -132,9 +172,14 @@
 #### 4. Updating Database
 
 * Once the bot has been deployed with the successfully updated fork you are all done.
+</details> 
+
 ------
 
 ## <a name="local"></a>:desktop_computer: Running Rita Locally
+
+<details>
+<summary></strong>Click for instructions</strong></summary>
 
 *The bot can also be run locally on a device. Please note that for the bot to continue running 24/7, the process of `node src/bot.js` should always remain online and thus your PC/hosting device must remain online too*
 
@@ -153,9 +198,17 @@
 Any Database that runs with [SQL Sequelize](https://sequelize.org/master/) can be used. If you want to use an alternative DB Location other than in the default directory then you can manually set this. Example: The connection to a sqlite database with the name *`database.db`* stored at the same level of this README file would be *`./database.db`*.
 
 Within the **.env** file from the above step, set the **DATABASE_URL** to be the path to the database file, if there is no DB file in the selected path then RITA will create the DB file upon startup.
-* Example -  `DATABASE_URL` = `C:\Admin\Rita_Development\test.db`
+* Example -  `DATABASE_URL` = `C:\Admin\Rita_Development\test.db`#
+
+</details> 
+
+------
 
 ## <a name="database"></a>Heroku Database Support
+
+<details>
+<summary></strong>Click for instructions</strong></summary>
+
 Sometimes you need to edit the Database manually, This is not something you should be playing around with unless you really know what you are doing.
 
 #### 1. Checklist
@@ -181,13 +234,14 @@ At this point, if we were to hit ‘save’ (please don’t), something very str
 
 1. Go to the **Advanced** tab and under db restriction copy the database name (it’s the same value as the **Maintenance Database** field filled earlier).
 2. Click Save/Connect and you are done. Edit away.
+
+</details> 
+
 ------
+
 ### <a name="soon"></a>:bulb: Coming Soon!
 
-01. Error Message Support Section.
-02. `!tr tasks #TargetChannel` Implementation.
-03. Allow Bot Translation (V1.3.0)
-04. Discord slash commands introduction
+01. Lots of Changes
 
 ------
 
