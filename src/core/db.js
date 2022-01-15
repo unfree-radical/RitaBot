@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-expressions */
 // -----------------
 // Global variables
 // Err TAG: RS006??
@@ -10,6 +8,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable quote-props */
 /* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-expressions */
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
@@ -22,8 +22,16 @@ exports.server_obj = server_obj;
 // Database Auth Process
 // ----------------------
 
-// console.log("DEBUG: Pre Stage Database Auth Process");
+// console.log("DEBUG: SQL Patch");
+if (!process.env.DATABASE_URL)
+{
 
+   return console.log("ERROR, Missing Database Information");
+
+}
+const regex = (/((mysql):\/\/)((\S*):)((\S*)@)((\S*)\/)(\S*)$/gm);
+const dbString = process.env.DATABASE_URL.split(regex);
+// console.log("DEBUG: Pre Stage Database Auth Process");
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
       logging: false,
@@ -39,11 +47,11 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
    }) :
    process.env.DATABASE_URL.startsWith("mysql") ?
       new Sequelize(
-         process.env.DATABASE_URL,
-         {
-            logging: false
-
-         }
+         dbString[9],
+         dbString[4],
+         dbString[6], {dialect: dbString[2],
+            "host": dbString[8],
+            logging: false}
       ) :
       new Sequelize(
          process.env.DATABASE_URL,
@@ -296,7 +304,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       await Stats.upsert({logging: false,
          "id": "bot"});
-      await this.updateColumns();
+      // await this.updateColumns();
       // console.log("DEBUG: New columns should be added Before this point.");
       await Servers.upsert({logging: false,
          "id": "bot",
