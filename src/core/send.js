@@ -735,6 +735,7 @@ function embedOff (data)
    function sendWebhookMessage (webhook, data)
    {
 
+      // Same channel always set to disable all pings from RITA
       if (data.origin.id === data.forward && data.message.server[0].servertags === "none")
       {
 
@@ -742,14 +743,16 @@ function embedOff (data)
          serverPings = [];
 
       }
+      // Cross channel allows all pings from RITA
       else if (data.message.server[0].servertags === "none")
       {
 
-         // console.log("DEBUG: Same Dest & None Ping");
+         // console.log("DEBUG: Cross Channel & None Ping");
          serverPings = ["everyone", "users"];
 
       }
 
+      // Same channel always set to disable all pings from RITA
       if (data.origin.id === data.forward && data.message.server[0].servertags === "everyone")
       {
 
@@ -757,18 +760,20 @@ function embedOff (data)
          serverPings = [];
 
       }
+      // Cross channel disables everyone and here pings
       else if (data.message.server[0].servertags === "everyone")
       {
 
-         // console.log("DEBUG: Same Dest & None Ping");
+         // console.log("DEBUG: Cross Channel & None Ping");
          serverPings = ["users"];
 
       }
 
+      // Same channel and cross channel disables all pings
       if (data.origin.id === data.forward || data.message.server[0].servertags === "all")
       {
 
-         console.log("DEBUG: Same Dest & None Ping");
+         //console.log("DEBUG: Same Dest & Cross Channel & None Ping");
          serverPings = [];
 
       }
