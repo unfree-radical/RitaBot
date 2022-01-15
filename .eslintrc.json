@@ -86,6 +86,7 @@
       "no-console": "off",
       "camelcase": "off",
       "no-dupe-keys": "off",
+      "consistent-return": "off",
       // -----------------------------
       // eslint all override defaults
       // -----------------------------
