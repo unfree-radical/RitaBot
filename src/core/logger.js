@@ -175,11 +175,12 @@ function errorLog (error, subtype, id)
    if (errorTypes[subtype] === ":japanese_ogre:  Unhandled promise rejection")
    {
 
-      return console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}\n----------------------------------------\n`);
+      return;
+      // console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}`);
 
    }
 
-   console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}\n----------------------------------------\n`);
+   console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}`);
    hookSend({
       "color": "err",
       // eslint-disable-next-line no-useless-concat
