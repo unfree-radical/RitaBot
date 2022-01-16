@@ -33,7 +33,7 @@ module.exports.shards = function shards (data)
    // Get shard info
    // ---------------
 
-   data.color = "info";
+   data.color = "status";
 
    data.text = `__**Bot Shard Information**__\n\n`;
    data.text += `​${oneLine`
@@ -205,6 +205,7 @@ module.exports.proc = function proc (data)
    // Send message
    // -------------
 
+   data.color = "status";
    sendMessage(data);
 
 };
@@ -257,7 +258,7 @@ module.exports.ident = function ident (data)
 
    // console.log("DEBUG: ID Message");
 
-   data.color = "info";
+   data.color = "status";
    data.text = `**User Name:** \`${data.message.guild.members.cache.get(data.message.author.id).user.username}\`\n` +
    `**Nick Name:** \`${data.message.guild.members.cache.get(data.message.author.id).nickname || "None"}\`\n` +
    `**User ID:** \`${data.message.author.id}\`\n\n` +
@@ -291,7 +292,7 @@ module.exports.update = function update (data)
 
    // console.log("DEBUG: ID Message");
 
-   data.color = "info";
+   data.color = "status";
    data.text = `*How to Update your bot:* \n\n` +
    `*Heroku Users* \n\n` +
    `**Step 1:** Retrieve your github.com account username \n\n` +

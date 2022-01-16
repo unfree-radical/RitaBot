@@ -28,7 +28,9 @@ module.exports = function run (data)
       {
 
          // console.log(`DEBUG: ${pin}`);
-         data.message.channel.send(`Your pin is: ${pin}`);
+         data.color = "info";
+         data.text = `Your pin is: ${pin}`;
+         return sendMessage(data);
 
       });
 
@@ -38,7 +40,9 @@ module.exports = function run (data)
    {
 
       // console.log(`DEBUG: ${pin}`);
-      data.message.channel.send(`That users pin is: ${pin}`);
+      data.color = "info";
+      data.text = `That users pin is: ${pin}`;
+      return sendMessage(data);
 
    });
 

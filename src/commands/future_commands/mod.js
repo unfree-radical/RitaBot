@@ -50,7 +50,7 @@ module.exports.ban = function ban (data)
                   // An error happened
                   // This is generally due to the bot not being able to kick the member,
                   // Either due to missing permissions or role hierarchy
-                  data.color = "err";
+                  data.color = "error";
                   data.text = "I was unable to ban that user.\nThis is generally due to the bot missing permissions or role hierarchy.\n";
                   console.log(err);
                   return sendMessage(data);
@@ -135,7 +135,7 @@ module.exports.unban = function unban (data)
 
                }
 
-               data.color = "err";
+               data.color = "error";
                data.text = "I was unable to unban that user.\nThis is generally due to the bot missing permissions, missing or incorrect ID or role hierarchy.\n";
                console.log(err);
                return sendMessage(data);
