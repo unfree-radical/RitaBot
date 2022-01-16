@@ -382,6 +382,7 @@ function getHistory (data)
          `* Guild History 12k - 14k = ${data.cmd.server[0].prefix} history guild 14k\n` +
          `* Guild History 14k - 16k = ${data.cmd.server[0].prefix} history guild 16k\n` +
          `* Guild History 16k - 18k = ${data.cmd.server[0].prefix} history guild 18k\n` +
+         `* Guild History 18k - 20k = ${data.cmd.server[0].prefix} history guild 20k\n` +
          "```\n";
 
          return sendMessage(data);
@@ -659,7 +660,45 @@ function getHistory (data)
          `# 17000 Guilds - 10/01/2022\n` +
          `# 17100 Guilds - 11/01/2022\n` +
          `# 17200 Guilds - 11/01/2022\n` +
-         `# 17300 Guilds - 12/01/2022\n\n` +
+         `# 17300 Guilds - 12/01/2022\n` +
+         `# 17400 Guilds - 12/01/2022\n` +
+         `# 17500 Guilds - 13/01/2022\n` +
+         `# 17600 Guilds - 14/01/2022\n` +
+         `# 17700 Guilds - 14/01/2022\n` +
+         `# 17800 Guilds - 15/01/2022\n` +
+         `# 17900 Guilds - 15/01/2022\n` +
+         `# 18000 Guilds - 16/01/2022\n\n` +
+         "```\n";
+
+      }
+
+      if (data.cmd.params.split(" ")[1].toLowerCase() === "20k")
+      {
+
+         data.color = "info";
+         data.text = `**Guilds Stats**\n` +
+         "```md\n" +
+         `# 18000 Guilds - 16/01/2022\n` +
+         `# 18100 Guilds - \n` +
+         `# 18200 Guilds - \n` +
+         `# 18300 Guilds - \n` +
+         `# 18400 Guilds - \n` +
+         `# 18500 Guilds - \n` +
+         `# 18600 Guilds - \n` +
+         `# 18700 Guilds - \n` +
+         `# 18800 Guilds - \n` +
+         `# 18900 Guilds - \n` +
+         `# 19000 Guilds - \n` +
+         `# 19100 Guilds - \n` +
+         `# 19200 Guilds - \n` +
+         `# 19300 Guilds - \n` +
+         `# 19400 Guilds - \n` +
+         `# 19500 Guilds - \n` +
+         `# 19600 Guilds - \n` +
+         `# 19700 Guilds - \n` +
+         `# 19800 Guilds - \n` +
+         `# 19900 Guilds - \n` +
+         `# 20000 Guilds - \n` +
          "```\n";
 
       }
