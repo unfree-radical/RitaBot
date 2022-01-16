@@ -325,8 +325,8 @@ function getHistory (data)
       `# Version 1.2.6-11 - Release Date: 04/11/2021 \n` +
       `# Version 1.2.6-12 - Release Date: 07/11/2021 \n` +
       `# Version 1.2.6-13 - Release Date: 13/11/2021 \n` +
-      `# Version 1.2.6-14 - Release Date: 13/11/2021 \n\n` +
-      `# Version 1.2.6-15 - Release Date: 13/12/2021 \n\n` +
+      `# Version 1.2.6-14 - Release Date: 13/11/2021 \n` +
+      `# Version 1.2.6-15 - Release Date: 13/12/2021 \n` +
       `# Version 1.2.6-16 - Release Date: 27/12/2021 \n\n` +
       "```\n";
 
@@ -382,7 +382,7 @@ function getHistory (data)
          `* Guild History 12k - 14k = ${data.cmd.server[0].prefix} history guild 14k\n` +
          `* Guild History 14k - 16k = ${data.cmd.server[0].prefix} history guild 16k\n` +
          `* Guild History 16k - 18k = ${data.cmd.server[0].prefix} history guild 18k\n` +
-         `* Guild History 18k - 20k = ${data.cmd.server[0].prefix} history guild 20k\n` +
+         `* Guild History 18k - 20k = ${data.cmd.server[0].prefix} history guild 20k\n\n` +
          "```\n";
 
          return sendMessage(data);
@@ -698,7 +698,7 @@ function getHistory (data)
          `# 19700 Guilds - \n` +
          `# 19800 Guilds - \n` +
          `# 19900 Guilds - \n` +
-         `# 20000 Guilds - \n` +
+         `# 20000 Guilds - \n\n` +
          "```\n";
 
       }
@@ -746,7 +746,7 @@ function getHistory (data)
 
    data.color = "error";
    data.text =
-      `:warning:  **\`${data.cmd.params}\`** is not a valid history option. \nPlease use 1.0 / 1.1 / 1.2.0 / 1.2.1 / 1.2.2 / 1.2.3 / 1.2.4 / 1.2.5 / 1.2.6`;
+      `:warning:  **\`${data.cmd.params}\`** is not a valid history option. \nPlease use guild / 1.0 / 1.1 / 1.2.0 / 1.2.1 / 1.2.2 / 1.2.3 / 1.2.4 / 1.2.5 / 1.2.6 / 1.3.0`;
 
    // -------------
    // Send message
