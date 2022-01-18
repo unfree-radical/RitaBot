@@ -273,6 +273,12 @@ function bufferChains (data, from, guild)
       ).then((res) =>
       {
 
+         if (res.error === true)
+         {
+
+            console.log("DEBUG: API Error Found");
+
+         }
 
          // Language you set it to translate to when setting up !t channel command
          const langTo = to;
@@ -546,6 +552,12 @@ module.exports = function run (data) // eslint-disable-line complexity
          ).then((res) =>
          {
 
+            if (res.error === true)
+            {
+
+               console.log("DEBUG: API Error Found");
+
+            }
             // Language you set it to translate to when setting up !t channel command
             const langTo = lang.iso;
 
@@ -611,6 +623,12 @@ module.exports = function run (data) // eslint-disable-line complexity
       ).then(async (res) =>
       {
 
+         if (res.error === true)
+         {
+
+            return console.log("DEBUG: API Error Found");
+
+         }
          res.text = translateFix(res.text, matches);
 
 
