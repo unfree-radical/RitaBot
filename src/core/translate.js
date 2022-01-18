@@ -276,7 +276,11 @@ function bufferChains (data, from, guild)
          if (res.error === true)
          {
 
-            console.log("DEBUG: API Error Found");
+            const col = "errorcount";
+            const id = "bot";
+            db.increaseServersCount(col, id);
+            // console.log("DEBUG: API Error Found");
+            return;
 
          }
 
@@ -555,9 +559,14 @@ module.exports = function run (data) // eslint-disable-line complexity
             if (res.error === true)
             {
 
-               console.log("DEBUG: API Error Found");
+               const col = "errorcount";
+               const id = "bot";
+               db.increaseServersCount(col, id);
+               // console.log("DEBUG: API Error Found");
+               return;
 
             }
+
             // Language you set it to translate to when setting up !t channel command
             const langTo = lang.iso;
 
@@ -626,9 +635,14 @@ module.exports = function run (data) // eslint-disable-line complexity
          if (res.error === true)
          {
 
-            return console.log("DEBUG: API Error Found");
+            const col = "errorcount";
+            const id = "bot";
+            db.increaseServersCount(col, id);
+            // console.log("DEBUG: API Error Found");
+            return;
 
          }
+
          res.text = translateFix(res.text, matches);
 
 
