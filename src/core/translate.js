@@ -675,7 +675,7 @@ module.exports = function run (data) // eslint-disable-line complexity
                //   `Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`,
                //   err
                // );
-               console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}, DEST CHAN: ${fw}`);
+               // console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}, DEST CHAN: ${fw}`);
 
 
             }
