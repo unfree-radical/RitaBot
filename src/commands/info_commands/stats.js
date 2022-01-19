@@ -289,6 +289,52 @@ module.exports = function run (data)
 
       }
 
+      if (data.cmd.params && data.cmd.params.toLowerCase().includes("bot"))
+      {
+
+         const serverID = "bot";
+
+         db.getServerInfo(
+            serverID,
+            function getServerInfo (server)
+            {
+
+               if (server.length === 0)
+               {
+
+                  data.text = `\`\`\`${serverID} ERROR\n\n\`\`\``;
+                  return sendMessage(data);
+
+               }
+
+               const targetServer = `:bar_chart:  In total **\`${server[0].errorcount}\`** messages have failed to translate.\n\n`;
+
+               data.text = `${targetServer}\n\n`;
+
+               // -------------
+               // Send message
+               // -------------
+
+               return sendMessage(data);
+
+            }
+         ).catch((err) =>
+         {
+
+            console.log(
+               "error",
+               err,
+               "warning",
+               serverID
+            );
+
+            data.text = `\`\`\`Critical Stats Bot Error, Zycore Broke it.\n\n\`\`\``;
+            return sendMessage(data);
+
+         });
+
+      }
+
       if (data.cmd.params && data.cmd.params.toLowerCase().includes("debug"))
       {
 

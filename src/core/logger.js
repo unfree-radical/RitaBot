@@ -180,7 +180,8 @@ function errorLog (error, subtype, id)
 
    }
 
-   console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}`);
+   // console.log(`----------------------------------------\nError ${errorTitle} Suppressed\n${error.stack}`);
+
    hookSend({
       "color": "err",
       // eslint-disable-next-line no-useless-concat

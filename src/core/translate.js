@@ -273,7 +273,7 @@ function bufferChains (data, from, guild)
       ).then((res) =>
       {
 
-         if (res.error === true)
+         if (res.error && res.error === true)
          {
 
             const col = "errorcount";
@@ -556,7 +556,7 @@ module.exports = function run (data) // eslint-disable-line complexity
          ).then((res) =>
          {
 
-            if (res.error === true)
+            if (res.error && res.error === true)
             {
 
                const col = "errorcount";
@@ -632,7 +632,7 @@ module.exports = function run (data) // eslint-disable-line complexity
       ).then(async (res) =>
       {
 
-         if (res.error === true)
+         if (res.error && res.error === true)
          {
 
             const col = "errorcount";

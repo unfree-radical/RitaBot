@@ -74,7 +74,7 @@ db.
 
       logger(
          "dev",
-         `----------------------------------------\nAttempting Database Connection....`
+         `----------------------------------------\nAttempting Database Connection.`
       );
 
    }).
