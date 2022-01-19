@@ -4,7 +4,7 @@
 // -----------------
 
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING]
-const discord = require("discord.js-light");
+const discord = require("discord.js");
 const auth = require("./core/auth");
 
 // ------------------------

@@ -6,7 +6,7 @@
 // Codebeat:disable[LOC,ABC,BLOCK_NESTING,ARITY]
 const sendMessage = require("../../core/command.send");
 const colors = require("../../core/colors");
-const {MessageEmbed} = require("discord.js-light");
+const {MessageEmbed} = require("discord.js");
 const embed = new MessageEmbed();
 const auth = require("../../core/auth");
 const helpFooter = `**For more help join our official [support server](<https://discord.gg/hXaedzCQ8d>)**\n\n`;

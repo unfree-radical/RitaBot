@@ -16,7 +16,7 @@ const react = require("./commands/translation_commands/translate.react");
 const botVersion = require("../package.json").version;
 const botCreator = "Rita Bot Project";
 const joinMessage = require("./commands/info_commands/join");
-const {MessageActionRow, MessageSelectMenu} = require("discord.js-light");
+const {MessageActionRow, MessageSelectMenu} = require("discord.js");
 
 // ----------
 // Core Code
