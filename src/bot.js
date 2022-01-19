@@ -66,17 +66,17 @@ const client = new Client({
       "GuildMemberManager": Infinity, // guild.members
       "GuildStickerManager": 15, // guild.stickers
       "GuildScheduledEventManager": 15, // guild.scheduledEvents
-      "MessageManager": 15, // channel.messages
+      "MessageManager": 200, // channel.messages
       // "PermissionOverwriteManager": 15, // channel.permissionOverwrites
       "PresenceManager": 15, // guild.presences
-      "ReactionManager": 15, // message.reactions
+      "ReactionManager": 50, // message.reactions
       "ReactionUserManager": 15, // reaction.users
       // "RoleManager": 15, // guild.roles
       "StageInstanceManager": 15, // guild.stageInstances
       "ThreadManager": 15, // channel.threads
       "ThreadMemberManager": 15, // threadchannel.members
       "UserManager": Infinity, // client.users
-      "VoiceStateManager": 15 // guild.voiceStates
+      "VoiceStateManager": 0 // guild.voiceStates
    }),
    "intents": myIntents,
    "waitGuildTimeout": 7000
