@@ -1162,7 +1162,7 @@ module.exports = function run (data)
       //   `CRITICAL: Send Error, send.js = Run/Line 1032 - SERVER: ${data.message.guild.id}`,
       //   err
       // );
-      console.log(`CRITICAL: Send Error, send.js = Run/Line 1032 - SERVER: ${data.message.guild.id}, DEST CHAN: ${data.forward}`);
+      // console.log(`CRITICAL: Send Error, send.js = Run/Line 1032 - SERVER: ${data.message.guild.id}, DEST CHAN: ${data.forward}`);
 
    }
 
