@@ -180,6 +180,21 @@ function checkDeleteTask (data)
 
    }
 
+   // If channel ID is used instead of task ID
+   if (data.cmd.num.length > 8)
+   {
+
+      data.color = "error";
+      data.text = `:warning:  We said taskID not channelID`;
+
+      // -------------
+      // Send message
+      // -------------
+      console.log(`DEBUG: [2] Idiot used channelID`);
+      return sendMessage(data);
+
+   }
+
    // console.log(`DEBUG: [2] Has task ID in command`);
 
    {
