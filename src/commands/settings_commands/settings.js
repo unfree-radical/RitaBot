@@ -1194,6 +1194,7 @@ module.exports = function run (data)
       `:grey_question: Language Detection: **\`${data.cmd.server[0].langdetect}\`**\n\n` +
       `:robot: Bot to Bot Translation Status: **\`${data.cmd.server[0].bot2botstyle}\`**\n\n` +
       `:face_with_symbols_over_mouth: Server Tags Disabled: **\`${data.cmd.server[0].servertags}\`**\n\n` +
+      `:book: Profanity Filter: **\`${data.cmd.server[0].badwords}\`** - **FUTURE FEATURE**\n\n` +
       `:flags: Translation by Flag Reactions: **\`${data.cmd.server[0].flag}\`**\n\n` +
       `:pause_button: Help Menu Persistance: **\`${data.cmd.server[0].menupersist}\`**\n\n` +
       `:pause_button: React Translation Persistance: **\`${data.cmd.server[0].reactpersist}\`**\n\n` +
