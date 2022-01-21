@@ -278,6 +278,7 @@ exports.listen = function listen (client)
       (reason) =>
       {
 
+         // console.error("Unhandled promise rejection:", reason);
          const err = `${`Unhandled Rejection` +
            `\nCaused By:\n`}${reason.stack}`;
          logger(
