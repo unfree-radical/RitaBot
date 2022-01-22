@@ -312,11 +312,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
       await Servers.upsert({logging: debugMode,
          "id": "bot",
          "lang": "en"});
-      db.getQueryInterface().removeIndex(
-         "tasks",
-         "tasks_origin_dest",
-         {logging: debugMode}
-      );
+
       const guilds = Array.from(client.guilds._cache.keys()).length;
       const guildsArray = Array.from(client.guilds._cache);
       let i = 0;
@@ -619,10 +615,28 @@ exports.updateColumns = async function updateColumns ()
 
    // For older version of RITA, must remove old unique index
    // console.log("DEBUG: Stage Remove old RITA Unique index");
-   await db.getQueryInterface().removeIndex("tasks", "tasks_origin_dest");
+   db.getQueryInterface().removeIndex("tasks","tasks_origin_dest");
    // console.log("DEBUG : All old index removed");
 
 };
+
+// ------------------------------------
+// Dropping an index in DB if exists
+// ------------------------------------
+exports.dropTableIndex = async function dropTableIndex(tableName, indexName)
+{
+   let listTableIndexes = await db.getQueryInterface().showIndex(tableName);
+   // if index does not exists we don't do nothing
+   if (listTableIndexes.find(element => element.name == indexName) == null)
+   {
+      console.log(`Index ${indexName} already dropped before`);
+   } 
+   else
+   {
+      console.log(`Dropping Index ${indexName}`);
+      await db.getQueryInterface().removeIndex(tableName, indexName);
+   }
+}
 
 // ------------------------------------
 // Adding a column in DB if not exists
