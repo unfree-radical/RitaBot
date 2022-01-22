@@ -302,10 +302,11 @@ exports.initializeDatabase = async function initializeDatabase (client)
       // eslint-disable-next-line init-declarations
       let guild;
 
+      await this.updateColumns();
+      // console.log("DEBUG: New columns should be added Before this point.");
       await Stats.upsert({logging: false,
          "id": "bot"});
       // await this.updateColumns();
-      // console.log("DEBUG: New columns should be added Before this point.");
       await Servers.upsert({logging: false,
          "id": "bot",
          "lang": "en"});
