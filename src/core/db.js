@@ -16,8 +16,8 @@ const logger = require("./logger");
 const Op = Sequelize.Op;
 let dbNewPrefix = "";
 const server_obj = {};
-//const debugMode = console.log;
-const debugMode=false;
+const debugMode=false;  // put this to true for debugging db.js
+const SequelizeDebugMode= debugMode ? console.log : false;
 exports.server_obj = server_obj;
 
 // ----------------------
@@ -36,7 +36,7 @@ const dbString = process.env.DATABASE_URL.split(regex);
 // console.log("DEBUG: Pre Stage Database Auth Process");
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
-      logging: debugMode,
+      logging: SequelizeDebugMode,
       "dialect": "sqlite",
       "dialectOptions": {
          "ssl": {
@@ -53,12 +53,12 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
          dbString[4],
          dbString[6], {dialect: dbString[2],
             "host": dbString[8],
-            logging: debugMode}
+            logging: SequelizeDebugMode}
       ) :
       new Sequelize(
          process.env.DATABASE_URL,
          {
-            logging: debugMode,
+            logging: SequelizeDebugMode,
             "dialectOptions": {
                "ssl": {
                   "require": true,
@@ -332,7 +332,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 {
 
    // console.log("DEBUG: Stage Init/create tables - Pre Sync");
-   db.sync({logging: debugMode}).then(async () =>
+   db.sync({logging: SequelizeDebugMode}).then(async () =>
    {
 
       // eslint-disable-next-line init-declarations
@@ -340,10 +340,10 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       await this.updateColumns();
       // console.log("DEBUG: New columns should be added Before this point.");
-      await Stats.upsert({logging: debugMode,
+      await Stats.upsert({logging: SequelizeDebugMode,
          "id": "bot"});
 
-      await Servers.upsert({logging: debugMode,
+      await Servers.upsert({logging: SequelizeDebugMode,
          "id": "bot",
          "lang": "en"});
 
@@ -357,8 +357,8 @@ exports.initializeDatabase = async function initializeDatabase (client)
          const guildId = guild[1].id;
          // eslint-disable-next-line no-await-in-loop
          await Stats.upsert({"id": guildId,
-            logging: debugMode});
-         Servers.findAll({logging: debugMode,
+            logging: SequelizeDebugMode});
+         Servers.findAll({logging: SequelizeDebugMode,
             "where": {"id": guildId}}).then((projects) =>
          {
 
@@ -366,16 +366,16 @@ exports.initializeDatabase = async function initializeDatabase (client)
             {
 
                // console.log("DEBUG: Add Server");
-               Servers.upsert({logging: debugMode,
+               Servers.upsert({logging: SequelizeDebugMode,
                   "id": guildId,
                   "lang": "en",
                   "active": true});
-               Stats.upsert({logging: debugMode,
+               Stats.upsert({logging: SequelizeDebugMode,
                   "id": guildId});
 
             }
             // console.log("DEBUG: Active Check all Active Guilds");
-            Servers.upsert({logging: debugMode,
+            Servers.upsert({logging: SequelizeDebugMode,
                "id": guildId,
                "active": true});
 
@@ -383,7 +383,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       }
       // console.log("DEBUG: Stage Init/create tables - Pre servers FindAll");
-      const serversFindAll = await Servers.findAll({logging: debugMode});
+      const serversFindAll = await Servers.findAll({logging: SequelizeDebugMode});
       for (let i = 0; i < serversFindAll.length; i += 1)
       {
 
@@ -445,7 +445,7 @@ exports.addServer = async function addServer (id, lang)
          "prefix": "!tr"
       }
    };
-   await Servers.findAll({logging: debugMode,
+   await Servers.findAll({logging: SequelizeDebugMode,
       "where": {id}}).then((server) =>
    {
 
@@ -457,7 +457,7 @@ exports.addServer = async function addServer (id, lang)
             lang,
             "prefix": "!tr"
          }).catch((err) => console.log("VALIDATION: Server Already Exists in Servers Table"));
-         Stats.create({logging: debugMode,
+         Stats.create({logging: SequelizeDebugMode,
             id}).catch((err) => console.log("VALIDATION: Server Already Exists in Stats Table"));
 
       }
