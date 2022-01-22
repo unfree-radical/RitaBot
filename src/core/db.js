@@ -18,8 +18,8 @@ let dbNewPrefix = "";
 const server_obj = {};
 // put debugMode to true for debugging db.js
 const debugMode = false;
-const SequelizeDebugMode = debugMode ? 
-   console.log : 
+const SequelizeDebugMode = debugMode ?
+   console.log :
    false;
 exports.server_obj = server_obj;
 
@@ -667,9 +667,9 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
 {
 
    const listTableIndexes = await db.getQueryInterface().showIndex(tableName);
-   
+
    // if index does not exists we don't do nothing
-   if (listTableIndexes.find(element => element.name === indexName) === null)
+   if (listTableIndexes.find((element => element.name) === indexName) === null)
    {
 
       debugMode && console.log(`Index ${indexName} already dropped before`);
@@ -680,7 +680,7 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
 
       debugMode && console.log(`Dropping Index ${indexName}`);
       await db.getQueryInterface().removeIndex(tableName, indexName);
-   
+
    }
 
 };
@@ -724,12 +724,12 @@ exports.addTableColumn = async function addTableColumn (tableName, tableDefiniti
 exports.channelTasks = function channelTasks (data)
 {
 
-   // console.log("DEBUG: Stage Get Channel Tasks");
+   debugMode && console.log("DEBUG: Stage Get Channel Tasks");
    let id = data.message.channel.id;
    if (data.message.channel.type === "DM")
    {
 
-      // console.log("DEBUG: Line 609 - DB.js");
+      debugMode && console.log("DEBUG: Line 609 - DB.js");
       id = `@${data.message.author.id}`;
 
    }
@@ -769,7 +769,7 @@ exports.channelTasks = function channelTasks (data)
 exports.getTasks = function getTasks (origin, dest, id, cb)
 {
 
-   // console.log("DEBUG: Stage Get tasks for channel or user");
+   debugMode && console.log("DEBUG: Stage Get tasks for channel or user");
    if (origin.includes("me"))
    {
 
@@ -795,7 +795,7 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
       let dest1 = "@";
       dest1 += dest;
 
-      // console.log("DEBUG: getTasks user");
+      debugMode && console.log("DEBUG: getTasks user");
       return Tasks.findAll(
          {"where": {"dest": dest1}},
          {"raw": true}
