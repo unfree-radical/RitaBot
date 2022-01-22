@@ -244,6 +244,12 @@ const Servers = db.define(
       "ejectcount": {
          "type": Sequelize.INTEGER,
          "defaultValue": 0
+      },
+      "usercount": {
+         "type": Sequelize.INTEGER
+      },
+      "purge":{
+         "type": Sequelize.BOOLEAN
       }
    }
 );
@@ -639,6 +645,9 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "servername", Sequelize.STRING(255));
    await this.addTableColumn("servers", serversDefinition, "servertags", Sequelize.STRING(8), "none");
    await this.addTableColumn("servers", serversDefinition, "badwords", Sequelize.STRING(8), "OFF");
+   await this.addTableColumn("servers", serversDefinition, "usercount", Sequelize.INTEGER);
+   await this.addTableColumn("servers", serversDefinition, "purge", Sequelize.BOOLEAN);
+
    // console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
