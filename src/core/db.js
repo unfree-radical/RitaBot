@@ -24,7 +24,7 @@ exports.server_obj = server_obj;
 // Database Auth Process
 // ----------------------
 
-// console.log("DEBUG: SQL Patch");
+debugMode && console.log("DEBUG: SQL Patch");
 if (!process.env.DATABASE_URL)
 {
 
@@ -139,7 +139,7 @@ const Stats = db.define(
 // Database server table definition
 // ---------------------------------
 
-// console.log("DEBUG: Pre Stage Database server table definition");
+debugMode && console.log("DEBUG: Pre Stage Database server table definition");
 
 const Servers = db.define(
    "servers",
@@ -883,7 +883,7 @@ exports.getTasks = function getTasks (origin, dest, id, cb)
 exports.checkTask = function checkTask (origin, dest, eh, cb)
 {
 
-   // console.log("DEBUG: Stage Check if dest is found in tasks");
+   debugMode && console.log("DEBUG: Stage Check if dest is found in tasks");
    if (dest === "all")
    {
 
