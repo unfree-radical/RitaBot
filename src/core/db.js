@@ -17,8 +17,10 @@ const Op = Sequelize.Op;
 let dbNewPrefix = "";
 const server_obj = {};
 // put debugMode to true for debugging db.js
-const debugMode = false;  
-const SequelizeDebugMode = debugMode ? console.log : false;
+const debugMode = false;
+const SequelizeDebugMode = debugMode ? 
+   console.log : 
+   false;
 exports.server_obj = server_obj;
 
 // ----------------------
@@ -667,12 +669,12 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
    const listTableIndexes = await db.getQueryInterface().showIndex(tableName);
    
    // if index does not exists we don't do nothing
-   if (listTableIndexes.find(element => (element.name == indexName)) === null)
+   if (listTableIndexes.find(element => element.name === indexName) === null)
    {
 
       debugMode && console.log(`Index ${indexName} already dropped before`);
 
-   } 
+   }
    else
    {
 
@@ -680,7 +682,8 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
       await db.getQueryInterface().removeIndex(tableName, indexName);
    
    }
-}
+
+};
 
 // ------------------------------------
 // Adding a column in DB if not exists
