@@ -652,7 +652,7 @@ exports.updateColumns = async function updateColumns ()
 
    // For older version of RITA, must remove old unique index
    debugMode &&  console.log("DEBUG: Stage Remove old RITA Unique index");
-   db.getQueryInterface().removeIndex("tasks","tasks_origin_dest");
+   this.dropTableIndex("tasks","tasks_origin_dest");
    debugMode && console.log("DEBUG : All old index removed");
 
 };
