@@ -284,6 +284,34 @@ const Tasks = db.define(
                "LangTo",
                "LangFrom"
             ]
+         },
+         {
+            "unique": false,
+            "name": "ix_tasks_1",
+            "fields": [
+               "server"
+            ]
+         },
+         {
+            "unique": false,
+            "name": "ix_tasks_2",
+            "fields": [
+               "dest"
+            ]
+         },
+         {
+            "unique": false,
+            "name": "ix_tasks_3",
+            "fields": [
+               "origin"
+            ]
+         },
+         {
+            "unique": false,
+            "name": "ix_tasks_4",
+            "fields": [
+               "active"
+            ]
          }
       ]
    }
