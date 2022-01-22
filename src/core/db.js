@@ -16,6 +16,8 @@ const logger = require("./logger");
 const Op = Sequelize.Op;
 let dbNewPrefix = "";
 const server_obj = {};
+//const debugMode = console.log;
+const debugMode=false;
 exports.server_obj = server_obj;
 
 // ----------------------
@@ -34,7 +36,7 @@ const dbString = process.env.DATABASE_URL.split(regex);
 // console.log("DEBUG: Pre Stage Database Auth Process");
 const db = process.env.DATABASE_URL.endsWith(".db") ?
    new Sequelize({
-      logging: false,
+      logging: debugMode,
       "dialect": "sqlite",
       "dialectOptions": {
          "ssl": {
@@ -51,12 +53,12 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
          dbString[4],
          dbString[6], {dialect: dbString[2],
             "host": dbString[8],
-            logging: false}
+            logging: debugMode}
       ) :
       new Sequelize(
          process.env.DATABASE_URL,
          {
-            logging: false,
+            logging: debugMode,
             "dialectOptions": {
                "ssl": {
                   "require": true,
@@ -296,7 +298,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 {
 
    // console.log("DEBUG: Stage Init/create tables - Pre Sync");
-   db.sync({logging: false}).then(async () =>
+   db.sync({logging: debugMode}).then(async () =>
    {
 
       // eslint-disable-next-line init-declarations
@@ -304,16 +306,16 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       await this.updateColumns();
       // console.log("DEBUG: New columns should be added Before this point.");
-      await Stats.upsert({logging: false,
+      await Stats.upsert({logging: debugMode,
          "id": "bot"});
-      // await this.updateColumns();
-      await Servers.upsert({logging: false,
+
+      await Servers.upsert({logging: debugMode,
          "id": "bot",
          "lang": "en"});
       db.getQueryInterface().removeIndex(
          "tasks",
          "tasks_origin_dest",
-         {logging: false}
+         {logging: debugMode}
       );
       const guilds = Array.from(client.guilds._cache.keys()).length;
       const guildsArray = Array.from(client.guilds._cache);
@@ -325,8 +327,8 @@ exports.initializeDatabase = async function initializeDatabase (client)
          const guildId = guild[1].id;
          // eslint-disable-next-line no-await-in-loop
          await Stats.upsert({"id": guildId,
-            logging: false});
-         Servers.findAll({logging: false,
+            logging: debugMode});
+         Servers.findAll({logging: debugMode,
             "where": {"id": guildId}}).then((projects) =>
          {
 
@@ -334,16 +336,16 @@ exports.initializeDatabase = async function initializeDatabase (client)
             {
 
                // console.log("DEBUG: Add Server");
-               Servers.upsert({logging: false,
+               Servers.upsert({logging: debugMode,
                   "id": guildId,
                   "lang": "en",
                   "active": true});
-               Stats.upsert({logging: false,
+               Stats.upsert({logging: debugMode,
                   "id": guildId});
 
             }
             // console.log("DEBUG: Active Check all Active Guilds");
-            Servers.upsert({logging: false,
+            Servers.upsert({logging: debugMode,
                "id": guildId,
                "active": true});
 
@@ -351,8 +353,7 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       }
       // console.log("DEBUG: Stage Init/create tables - Pre servers FindAll");
-      const serversFindAll = await Servers.findAll({logging: false});
-      // {
+      const serversFindAll = await Servers.findAll({logging: debugMode});
       for (let i = 0; i < serversFindAll.length; i += 1)
       {
 
@@ -391,7 +392,6 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
-      // });
 
    });
 
@@ -415,7 +415,7 @@ exports.addServer = async function addServer (id, lang)
          "prefix": "!tr"
       }
    };
-   await Servers.findAll({logging: false,
+   await Servers.findAll({logging: debugMode,
       "where": {id}}).then((server) =>
    {
 
@@ -427,7 +427,7 @@ exports.addServer = async function addServer (id, lang)
             lang,
             "prefix": "!tr"
          }).catch((err) => console.log("VALIDATION: Server Already Exists in Servers Table"));
-         Stats.create({logging: false,
+         Stats.create({logging: debugMode,
             id}).catch((err) => console.log("VALIDATION: Server Already Exists in Stats Table"));
 
       }
