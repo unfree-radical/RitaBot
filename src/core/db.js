@@ -655,7 +655,7 @@ exports.updateColumns = async function updateColumns ()
 
    // For older version of RITA, must remove old unique index
    debugMode && console.log("DEBUG: Stage Remove old RITA Unique index");
-   this.dropTableIndex("tasks", "tasks_origin_dest");
+   await this.dropTableIndex("tasks", 'tasks_origin_dest');
    debugMode && console.log("DEBUG : All old index removed");
 
 };
@@ -669,7 +669,12 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
    const listTableIndexes = await db.getQueryInterface().showIndex(tableName);
 
    // if index does not exists we don't do nothing
-   if (listTableIndexes.find((element => element.name) === indexName) === null)
+   if (listTableIndexes.find((element) => 
+      {
+
+         return element.name === indexName;
+
+      }) === undefined)
    {
 
       debugMode && console.log(`Index ${indexName} already dropped before`);
@@ -677,7 +682,6 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
    }
    else
    {
-
       debugMode && console.log(`Dropping Index ${indexName}`);
       await db.getQueryInterface().removeIndex(tableName, indexName);
 
