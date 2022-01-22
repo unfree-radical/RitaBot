@@ -669,12 +669,7 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
    const listTableIndexes = await db.getQueryInterface().showIndex(tableName);
 
    // if index does not exists we don't do nothing
-   if (listTableIndexes.find((element) => 
-      {
-
-         return element.name === indexName;
-
-      }) === undefined)
+   if (listTableIndexes.find((element) => element.name === indexName) === undefined)
    {
 
       debugMode && console.log(`Index ${indexName} already dropped before`);
@@ -682,6 +677,7 @@ exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
    }
    else
    {
+
       debugMode && console.log(`Dropping Index ${indexName}`);
       await db.getQueryInterface().removeIndex(tableName, indexName);
 
