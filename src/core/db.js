@@ -16,8 +16,9 @@ const logger = require("./logger");
 const Op = Sequelize.Op;
 let dbNewPrefix = "";
 const server_obj = {};
-const debugMode=false;  // put this to true for debugging db.js
-const SequelizeDebugMode= debugMode ? console.log : false;
+// put debugMode to true for debugging db.js
+const debugMode = false;  
+const SequelizeDebugMode = debugMode ? console.log : false;
 exports.server_obj = server_obj;
 
 // ----------------------
@@ -248,7 +249,7 @@ const Servers = db.define(
       "usercount": {
          "type": Sequelize.INTEGER
       },
-      "purge":{
+      "purge": {
          "type": Sequelize.BOOLEAN
       }
    }
@@ -648,11 +649,11 @@ exports.updateColumns = async function updateColumns ()
    await this.addTableColumn("servers", serversDefinition, "usercount", Sequelize.INTEGER);
    await this.addTableColumn("servers", serversDefinition, "purge", Sequelize.BOOLEAN);
 
-   debugMode &&  console.log("DEBUG: All Columns Checked or Added");
+   debugMode && console.log("DEBUG: All Columns Checked or Added");
 
    // For older version of RITA, must remove old unique index
-   debugMode &&  console.log("DEBUG: Stage Remove old RITA Unique index");
-   this.dropTableIndex("tasks","tasks_origin_dest");
+   debugMode && console.log("DEBUG: Stage Remove old RITA Unique index");
+   this.dropTableIndex("tasks", "tasks_origin_dest");
    debugMode && console.log("DEBUG : All old index removed");
 
 };
@@ -660,18 +661,24 @@ exports.updateColumns = async function updateColumns ()
 // ------------------------------------
 // Dropping an index in DB if exists
 // ------------------------------------
-exports.dropTableIndex = async function dropTableIndex(tableName, indexName)
+exports.dropTableIndex = async function dropTableIndex (tableName, indexName)
 {
-   let listTableIndexes = await db.getQueryInterface().showIndex(tableName);
+
+   const listTableIndexes = await db.getQueryInterface().showIndex(tableName);
+   
    // if index does not exists we don't do nothing
-   if (listTableIndexes.find(element => element.name == indexName) == null)
+   if (listTableIndexes.find(element => (element.name == indexName)) === null)
    {
+
       debugMode && console.log(`Index ${indexName} already dropped before`);
+
    } 
    else
    {
+
       debugMode && console.log(`Dropping Index ${indexName}`);
       await db.getQueryInterface().removeIndex(tableName, indexName);
+   
    }
 }
 
