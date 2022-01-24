@@ -13,6 +13,7 @@
 const autoTranslate = require("./auto");
 const Sequelize = require("sequelize");
 const logger = require("./logger");
+const {oneLine} = require("common-tags");
 const Op = Sequelize.Op;
 let dbNewPrefix = "";
 const server_obj = {};
@@ -425,6 +426,16 @@ exports.initializeDatabase = async function initializeDatabase (client)
 
       }
       console.log("----------------------------------------\nDatabase fully initialized.\n----------------------------------------");
+
+      logger(
+         "custom",
+         {
+            "color": "ok",
+            "msg": oneLine`
+            --------\nDatabase fully initialized.\n--------
+         `
+         }
+      );
 
    });
 
