@@ -40,6 +40,8 @@ else if (fs.existsSync(`${path}.env.json`))
 
 }
 
+console.log(`DEBUG MODE: ${process.env.DEBUG}`);
+console.log(`MESSASGE DEBUG MODE: ${process.env.MESSAGE_DEBUG}`);
 
 // const dotenvJSON = require("dotenv-json");
 // const envJson = `${__dirname.slice(
