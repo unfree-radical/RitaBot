@@ -141,13 +141,13 @@ exports.listen = function listen (client)
             if (!message.author.bot)
             {
 
-               if (auth.messagedebug === "3")
+               if (auth.messageDebug === "3")
                {
 
                   console.log(`MD3: ${message.guild.name} - ${message.guild.id} - ${message.createdAt} \nMesssage User - ${message.author.tag} \nMesssage Content - ${message.content}\n----------------------------------------`);
 
                }
-               if (auth.messagedebug === "1")
+               if (auth.messageDebug === "1")
                {
 
                   console.log(`MD1: ${message.guild.name} - ${message.guild.id} - ${message.createdAt}`);
