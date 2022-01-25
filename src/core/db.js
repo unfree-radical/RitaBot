@@ -1249,7 +1249,7 @@ exports.getPurgeInfo = function getPurgeInfo (callback)
 
    debugMode && console.log("DEBUG: Stage Get purge stats");
    return db.query(
-      `select * from servers where purge = true;`,
+      `select * from servers where purge = true AND active = true;`,
       {"type": Sequelize.QueryTypes.SELECT},
    ).
       then(

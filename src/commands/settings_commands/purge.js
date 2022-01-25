@@ -121,7 +121,7 @@ async function purge (data)
                      {
 
                         const target = await data.message.client.guilds.cache.get(guild.id);
-                        console.log(`DEBUG: Purge Server ${i}, ${target.name}`);
+                        console.log(`DEBUG: Purge Server ${i}`);
                         db.updateServerTable(guild.id, "active", false, function error (err)
                         {
 
