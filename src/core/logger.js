@@ -20,7 +20,9 @@ const spacer = "​                                                          ​
 function devConsole (data)
 {
 
-   if (auth.dev)
+   console.log(`DEBUG MODE: ${auth.debug}`);
+   console.log(`MESSASGE DEBUG MODE: ${auth.messageDebug}`);
+   if (auth.debug && auth.debug === "1")
    {
 
       return console.log(data);
