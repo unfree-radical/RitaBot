@@ -17,7 +17,7 @@ const {oneLine} = require("common-tags");
 const Op = Sequelize.Op;
 let dbNewPrefix = "";
 const server_obj = {};
-// put debugMode to true for debugging db.js
+const botVersion = require("../../package.json").version;
 const debugMode = false;
 const SequelizeDebugMode = debugMode ?
    console.log :
@@ -78,9 +78,7 @@ db.
    then(() =>
    {
 
-      console.log(stripIndent`
-            ----------------------------------------
-            Attempting Database Connection.`);
+      console.log(`----------------------------------------\nAttempting Database Connection.`);
 
    }).
    catch((err) =>
@@ -431,7 +429,8 @@ exports.initializeDatabase = async function initializeDatabase (client)
          {
             "color": "ok",
             "msg": oneLine`
-            --------\nDatabase fully initialized.\n--------
+            :wave:  **${client.user.username}**
+            - Database fully initialized.
          `
          }
       );
