@@ -701,13 +701,13 @@ module.exports = function run (data) // eslint-disable-line complexity
          data.showAuthor = true;
          data.detectedLang = detectedLang;
          data.langTo = langTo;
-         if (auth.messagedebug === "4")
+         if (auth.messageDebug === "4")
          {
 
             console.log(`MD4: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}\nMesssage User - ${data.message.author.tag}\nMesssage Content - ${data.message.content}\nTranslated from: ${detectedLang} to: ${langTo}\n----------------------------------------`);
 
          }
-         if (auth.messagedebug === "2")
+         if (auth.messageDebug === "2")
          {
 
             console.log(`MD2: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}`);
