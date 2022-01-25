@@ -78,10 +78,9 @@ db.
    then(() =>
    {
 
-      logger(
-         "dev",
-         `----------------------------------------\nAttempting Database Connection.`
-      );
+      console.log(stripIndent`
+            ----------------------------------------
+            Attempting Database Connection.`);
 
    }).
    catch((err) =>
