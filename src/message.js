@@ -243,7 +243,7 @@ module.exports = async function run (config, message)
       if (message.content.startsWith(config.translateCmd) || message.content.startsWith(config.translateCmdShort) || message.content.startsWith(`<@${message.client.user.id}>`) || message.content.startsWith(`<@!${message.client.user.id}>`))
       {
 
-         if (auth.messagedebug === "5")
+         if (auth.messageDebug === "5")
          {
 
             console.log(`MD5: ${message.guild.name} - ${message.guild.id} - ${message.createdAt}\nMesssage User - ${message.author.tag} \nMesssage Content - ${message.content}\n----------------------------------------`);
