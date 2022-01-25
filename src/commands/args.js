@@ -32,6 +32,7 @@ const cmdList = require("./info_commands/list");
 const cmdMod = require("./future_commands/mod");
 const cmdMisc = require("./info_commands/misc");
 const cmdPrefix = require("./settings_commands/prefix");
+const cmdPurge = require("./settings_commands/purge");
 const cmdReact = require("./settings_commands/react");
 const cmdSettings = require("./settings_commands/settings");
 const cmdStats = require("./info_commands/stats");
@@ -382,6 +383,7 @@ module.exports = function run (data)
             "pin": cmdPin,
             "prefix": cmdPrefix,
             "proc": cmdMisc.proc,
+            "purge": cmdPurge,
             "react": cmdReact,
             "settings": cmdSettings,
             "shards": cmdMisc.shards,

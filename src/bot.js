@@ -62,8 +62,8 @@ const client = new Client({
       "PresenceManager": 1, // guild.presences
       "UserManager": 1 // client.users
    }),
-   "intents": myIntents,
-   "waitGuildTimeout": 7000
+   "intents": myIntents
+   // "waitGuildTimeout": 7000
 });
 const auth = require("./core/auth");
 

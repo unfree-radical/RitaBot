@@ -1242,6 +1242,29 @@ exports.getServerInfo = function getServerInfo (id, callback)
 
 };
 
+// ----------------
+// Get server info
+// ----------------
+
+exports.getPurgeInfo = function getPurgeInfo (callback)
+{
+
+   debugMode && console.log("DEBUG: Stage Get purge stats");
+   return db.query(
+      `select * from servers where purge = true;`,
+      {"type": Sequelize.QueryTypes.SELECT},
+   ).
+      then(
+         (result) => callback(result),
+         (err) => logger(
+            "error",
+            `${err}\nQuery: ${err.sql}`,
+            "db"
+         )
+      );
+
+};
+
 // ---------
 // Close DB
 // ---------
