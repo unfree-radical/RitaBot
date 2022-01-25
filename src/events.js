@@ -98,7 +98,7 @@ exports.listen = function listen (client)
                "color": "ok",
                "msg": oneLine`
                :wave:  **${client.user.username}**
-               is now online - \`v.${botVersion}\` -
+               - \`v.${botVersion}\` -
                **${singleShard}** shards
             `
             }
