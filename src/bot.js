@@ -8,11 +8,13 @@
 /* eslint-disable line-comment-position */
 /* eslint-disable sort-keys */
 const fs = require("fs");
-const time = {
-   "long": 60000,
-   "mid": 30000,
-   "short": 5000
-};
+const auth = require("./core/auth");
+// const time = {
+//    "gmt": 7000,
+//    "long": 60000,
+//    "mid": 30000,
+//    "short": 5000
+// };
 
 const path = `${__dirname.slice(0, -3)}`;
 
@@ -55,7 +57,7 @@ const {Client, Options, Intents} = require("discord.js");
 const myIntents = new Intents(32509);
 
 const client = new Client({
-   "restRequestTimeout": time.long,
+   "restRequestTimeout": auth.time.long,
    "shards": "auto",
    "makeCache": Options.cacheWithLimits({
       "GuildBanManager": 20, // guild.bans
@@ -65,9 +67,8 @@ const client = new Client({
       "UserManager": 1 // client.users
    }),
    "intents": myIntents
-   // "waitGuildTimeout": 7000
+   // "waitGuildTimeout": auth.time.gmt
 });
-const auth = require("./core/auth");
 
 /*
 const {AutoPoster} = require("topgg-autoposter");
@@ -120,7 +121,7 @@ function login (token)
       console.log(`retrying login...`);
       setTimeout(
          login,
-         5000
+         auth.time.login
       );
 
    });

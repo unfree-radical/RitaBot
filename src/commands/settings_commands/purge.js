@@ -59,7 +59,7 @@ async function purge (data)
          filter,
          "errors": ["time"],
          "max": 1,
-         "time": time.long
+         "time": auth.time["mid,"]
       }).
          then((message) =>
          {
