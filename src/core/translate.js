@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable no-inner-declarations */
 // -----------------
 // Global variables
 // -----------------
@@ -623,109 +625,113 @@ module.exports = function run (data) // eslint-disable-line complexity
    {
 
       const matches = await discordPatch(chunk);
-      translate(
+      const res = await translate(
          matches.text,
          opts
-      ).then(async (res) =>
+      );
+
+
+      if (res.error === true)
       {
 
-         if (res.error && res.error === true)
+         const col = "errorcount";
+         const id = "bot";
+         db.increaseServersCount(col, id);
+         // console.log("DEBUG: API Error Found");
+         return;
+
+      }
+
+      res.text = translateFix(res.text, matches);
+
+      const langTo = opts.to;
+
+      // Detected language from text
+      const detectedLang = res.from.language.iso;
+      // Language you set when setting up !tr channel command
+      const channelFrom = from;
+
+      if (detectedLang === langTo && res.text === data.message.content)
+      {
+
+         try
          {
 
-            const col = "errorcount";
-            const id = "bot";
-            db.increaseServersCount(col, id);
-            // console.log("DEBUG: API Error Found");
-            return;
-
-         }
-
-         res.text = translateFix(res.text, matches);
-
-         const langTo = opts.to;
-
-         // Detected language from text
-         const detectedLang = res.from.language.iso;
-         // Language you set when setting up !tr channel command
-         const channelFrom = from;
-
-         if (detectedLang === langTo && res.text === data.message.content)
-         {
-
-            try
+            if (data.message.client.channels.cache.get(data.forward).guild.id === data.message.client.channels.cache.get(data.message.channel.id).guild.id)
             {
 
-               if (data.message.client.channels.cache.get(data.forward).guild.id === data.message.client.channels.cache.get(data.message.channel.id).guild.id)
-               {
-
-                  // console.log("DEBUG: Cross Server Checker - Same Server, Same language");
-                  return;
-
-               }
-
-            }
-            catch (err)
-            {
-
-               // console.log(
-               //   `Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`,
-               //   err
-               // );
-
-               // console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`);
-
-
-            }
-
-            // console.log("DEBUG: Cross Server Checker - Diffrent Server, Same language");
-
-         }
-         else if (detectedLang !== channelFrom && channelFrom !== "auto")
-         {
-
-            // eslint-disable-next-line require-atomic-updates
-            res.text = await reTranslate(matches, opts);
-
-
-         }
-
-         updateServerStats(data.message);
-         data.forward = fw;
-         data.footer = ft;
-         data.color = data.member.displayColor;
-         data.text = res.text;
-         data.showAuthor = true;
-         data.detectedLang = detectedLang;
-         if (auth.messagedebug === "4")
-         {
-
-            console.log(`MD4: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}\nMesssage User - ${data.message.author.tag}\nMesssage Content - ${data.message.content}\nTranslated from: ${detectedLang} to: ${langTo}\n----------------------------------------`);
-
-         }
-         if (auth.messagedebug === "2")
-         {
-
-            console.log(`MD2: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}`);
-
-         }
-         if (data.footer)
-
-         {
-
-            if (data.message.server[0].langdetect === true)
-            {
-
-               data.footer.text += `\nSource Language: ${detectedLang}`;
+               // console.log("DEBUG: Cross Server Checker - Same Server, Same language");
+               return;
 
             }
 
          }
-         return getUserColor(
-            data,
-            botSend
-         );
+         catch (err)
+         {
 
-      });
+            // console.log(
+            //   `Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`,
+            //   err
+            // );
+
+            // console.log(`Translate Message Error, Same language Failure, translate.js = Line 638 - SERVER: ${data.message.guild.id}`);
+
+
+         }
+
+         // console.log("DEBUG: Cross Server Checker - Diffrent Server, Same language");
+
+      }
+      else if (detectedLang !== channelFrom && channelFrom !== "auto")
+      {
+
+         // eslint-disable-next-line no-unused-expressions
+
+
+         res.text = await reTranslate(matches, opts);
+
+
+         // eslint-disable-next-line require-atomic-updates
+
+
+      }
+
+      updateServerStats(data.message);
+      data.forward = fw;
+      data.footer = ft;
+      data.color = data.member.displayColor;
+      data.text = res.text;
+      data.showAuthor = true;
+      data.detectedLang = detectedLang;
+      if (auth.messagedebug === "4")
+      {
+
+         console.log(`MD4: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}\nMesssage User - ${data.message.author.tag}\nMesssage Content - ${data.message.content}\nTranslated from: ${detectedLang} to: ${langTo}\n----------------------------------------`);
+
+      }
+      if (auth.messagedebug === "2")
+      {
+
+         console.log(`MD2: ${data.message.guild.name} - ${data.message.guild.id} - ${data.message.createdAt}`);
+
+      }
+      if (data.footer)
+
+      {
+
+         if (data.message.server[0].langdetect === true)
+         {
+
+            data.footer.text += `\nSource Language: ${detectedLang}`;
+
+         }
+
+      }
+      return getUserColor(
+         data,
+         botSend
+      );
+
 
    });
 
