@@ -82,10 +82,6 @@ exports.changelog = null;
 // -------
 
 exports.time = {
-   // "gmt" and "login" are for bot.js
-   "gmt": 7000,
-   "login": 5000,
-   // Standard timeout times
    "long": 60000,
    "mid,": 30000,
    "short": 15000
