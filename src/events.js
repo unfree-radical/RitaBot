@@ -275,12 +275,13 @@ exports.listen = function listen (client)
 
    process.on(
       "unhandledRejection",
-      (reason) =>
+      (reason, promise) =>
       {
 
-         // console.error("Unhandled promise rejection:", reason);
+         console.error("DEBUG: Unhandled promise rejection:", reason);
          const err = `${`Unhandled Rejection` +
-           `\nCaused By:\n`}${reason.stack}`;
+           `\nCaused By:\n`}${reason.stack}` +
+           `\n${`Promise At:\n`}${promise.stack} `;
          logger(
             "dev",
             err
@@ -293,7 +294,6 @@ exports.listen = function listen (client)
 
       }
    );
-
    process.on(
       "warning",
       (warning) =>

@@ -303,6 +303,12 @@ function bufferChains (data, from, guild)
             return;
 
          }
+         else if (data.message.text === res.text)
+         {
+
+            return;
+
+         }
 
          const output = translateFix(res.text, matches);
 
@@ -586,6 +592,12 @@ module.exports = function run (data) // eslint-disable-line complexity
                return;
 
             }
+            else if (data.message.text === res.text)
+            {
+
+               return;
+
+            }
 
             const title = `\`\`\`LESS\n ${lang.name} (${lang.native}) \`\`\`\n`;
             const output = `\n${title}${translateFix(res.text, matches)}\n`;
@@ -689,6 +701,12 @@ module.exports = function run (data) // eslint-disable-line complexity
             // eslint-disable-next-line require-atomic-updates
             res.text = await reTranslate(matches, opts);
 
+
+         }
+         else if (data.message.text === res.text)
+         {
+
+            return;
 
          }
 

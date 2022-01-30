@@ -713,6 +713,11 @@ function embedOff (data)
       }
       const attachments = Array.from(dataAttachments.values());
       const files = [];
+      // Load the filesystem module
+      const stats = fs.statSync("myfile.txt");
+      const fileSizeInBytes = stats.size;
+      // Convert the file size to megabytes (optional)
+      const fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
       if (attachments && attachments.length > 0)
       {
 
@@ -722,6 +727,19 @@ function embedOff (data)
             files.push(attachments[i].url);
 
          }
+
+      }
+      if (attachments && fileSizeInMegabytes > 8)
+      {
+
+         // console.log("Error 50013");
+         logger(
+            "custom",
+            {
+               "color": "ok",
+               "msg": "The file you are attempting to send is greater the discord 8mb limit"
+            }
+         );
 
       }
       return files;
