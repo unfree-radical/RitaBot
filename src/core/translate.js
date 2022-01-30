@@ -659,6 +659,12 @@ module.exports = function run (data) // eslint-disable-line complexity
             try
             {
 
+               if (res.text === data.message.text)
+               {
+
+                  return;
+
+               }
                if (data.message.client.channels.cache.get(data.forward).guild.id === data.message.client.channels.cache.get(data.message.channel.id).guild.id)
                {
 
