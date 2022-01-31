@@ -260,6 +260,7 @@ exports.listen = function listen (client)
       (err) =>
       {
 
+         console.error("Uncaught Exception:", err);
          logger(
             "dev",
             err
@@ -278,7 +279,7 @@ exports.listen = function listen (client)
       (reason) =>
       {
 
-         // console.error("Unhandled promise rejection:", reason);
+         console.error("Unhandled promise rejection:", reason);
          const err = `${`Unhandled Rejection` +
            `\nCaused By:\n`}${reason.stack}`;
          logger(
@@ -299,6 +300,7 @@ exports.listen = function listen (client)
       (warning) =>
       {
 
+         console.error("warning:", warning);
          logger(
             "dev",
             warning
@@ -373,7 +375,9 @@ exports.listen = function listen (client)
       "guildUnavailable",
       (guild) => logger(
          "warn",
-         `Guild unavailable: ${guild.id}`
+         `Guild unavailable: 
+         Guild ID: ${guild.id},
+         Shard: ${client.guilds.cache.get(guild.id).shardID + 1} / ${client.options.shardCount}`
       )
    );
 
