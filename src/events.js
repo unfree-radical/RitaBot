@@ -251,6 +251,13 @@ exports.listen = function listen (client)
       )
    );
 
+   client.on("shardError", (error) =>
+   {
+
+      console.error("A websocket connection encountered an error:", error);
+
+   });
+
    // ------------------------
    // Proccess-related errors
    // ------------------------
@@ -276,10 +283,10 @@ exports.listen = function listen (client)
 
    process.on(
       "unhandledRejection",
-      (reason) =>
+      (reason, error) =>
       {
 
-         console.error("Unhandled promise rejection:", reason);
+         console.error("Unhandled promise rejection:", error);
          const err = `${`Unhandled Rejection` +
            `\nCaused By:\n`}${reason.stack}`;
          logger(
@@ -300,7 +307,7 @@ exports.listen = function listen (client)
       (warning) =>
       {
 
-         console.error("warning:", warning);
+         console.warn("warning:", warning);
          logger(
             "dev",
             warning
